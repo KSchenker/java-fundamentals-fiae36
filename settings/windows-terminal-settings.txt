@@ -1,0 +1,9 @@
+{
+    "backgroundImage": "<<EDIT>>\\Desktop\\dev\\java-wallpaper.jpg",
+    "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoLogo -NoExit -NoProfile -File <<EDIT>>\\desktop\\dev\\java-powershell-profile.ps1\"",
+    "guid": "{5472d94c-660f-4aaa-83d1-5c35b8520d96}",
+    "hidden": false,
+    "icon": "<<EDIT>>\\Desktop\\dev\\java-logo.ico",
+    "name": "Java Development JDK 21",
+    "startingDirectory": "<<EDIT>>\\Desktop\\dev"
+}
