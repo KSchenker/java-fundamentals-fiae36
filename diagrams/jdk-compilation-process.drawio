@@ -1,0 +1,78 @@
+<mxfile host="Electron" modified="2024-03-18T12:20:07.196Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.3 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="qqi2JBIt57WCCBJ7zb2W" version="22.0.3" type="device">
+  <diagram name="Seite-1" id="GdLtPgMgSgJGYAmESrKN">
+    <mxGraphModel dx="810" dy="473" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Cby-tVEIRWj7hk3t_caQ-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Cby-tVEIRWj7hk3t_caQ-1" target="Cby-tVEIRWj7hk3t_caQ-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Cby-tVEIRWj7hk3t_caQ-1" value="Betriebssystem (Windows, MacOS, Linux, Android, iOS...)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="362.5" y="351" width="370" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Cby-tVEIRWj7hk3t_caQ-2" value="Hardware" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="362.5" y="456" width="370" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Cby-tVEIRWj7hk3t_caQ-7" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;dashed=1;" edge="1" parent="1" source="Cby-tVEIRWj7hk3t_caQ-3" target="Cby-tVEIRWj7hk3t_caQ-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Cby-tVEIRWj7hk3t_caQ-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Cby-tVEIRWj7hk3t_caQ-3" target="Cby-tVEIRWj7hk3t_caQ-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Cby-tVEIRWj7hk3t_caQ-3" value="Java Runtime Environment" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="456" y="250" width="183" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Cby-tVEIRWj7hk3t_caQ-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Cby-tVEIRWj7hk3t_caQ-4" target="Cby-tVEIRWj7hk3t_caQ-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Cby-tVEIRWj7hk3t_caQ-4" value="Unser Java Programm" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="487.5" y="154" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Cby-tVEIRWj7hk3t_caQ-5" value="Für die Ausführung von Java Programmen ist eine Java Runtime Environment notwendig.&lt;br&gt;&lt;br&gt;Diese muss für jedes Betriebssystem separat implementiert werden." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=15;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="704" y="189" width="283" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="Cby-tVEIRWj7hk3t_caQ-13" value="einlesen" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Cby-tVEIRWj7hk3t_caQ-11" target="Cby-tVEIRWj7hk3t_caQ-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Cby-tVEIRWj7hk3t_caQ-11" value="Quelltextdatei&lt;br&gt;(.java)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="262" y="619" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Cby-tVEIRWj7hk3t_caQ-15" value="übersetzen" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Cby-tVEIRWj7hk3t_caQ-12" target="Cby-tVEIRWj7hk3t_caQ-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Cby-tVEIRWj7hk3t_caQ-12" value="Java Compiler&lt;br&gt;(javac.exe)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="474" y="619" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Cby-tVEIRWj7hk3t_caQ-17" value="ausführen" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Cby-tVEIRWj7hk3t_caQ-14" target="Cby-tVEIRWj7hk3t_caQ-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Cby-tVEIRWj7hk3t_caQ-14" value="Java Bytecode Datei (*.class)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="682" y="619" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Cby-tVEIRWj7hk3t_caQ-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Cby-tVEIRWj7hk3t_caQ-16" target="Cby-tVEIRWj7hk3t_caQ-11">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="970" y="577" />
+              <mxPoint x="322" y="577" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Cby-tVEIRWj7hk3t_caQ-16" value="Java Runtime Environment" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="910" y="619" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Cby-tVEIRWj7hk3t_caQ-19" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=none;endFill=0;" edge="1" parent="1" source="Cby-tVEIRWj7hk3t_caQ-18" target="Cby-tVEIRWj7hk3t_caQ-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Cby-tVEIRWj7hk3t_caQ-18" value="Im Idealfall kodiert in UTF-8" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=17;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="275.5" y="730" width="93" height="77" as="geometry" />
+        </mxCell>
+        <mxCell id="Cby-tVEIRWj7hk3t_caQ-24" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=none;endFill=0;" edge="1" parent="1" source="Cby-tVEIRWj7hk3t_caQ-23" target="Cby-tVEIRWj7hk3t_caQ-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Cby-tVEIRWj7hk3t_caQ-23" value="Wird indirekt über den Java Launcher gestartet (java.exe)" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;size=17;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="883.5" y="720" width="173" height="77" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
