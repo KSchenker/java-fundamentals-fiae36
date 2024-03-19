@@ -67,4 +67,55 @@ In Java können Zahlen im Binär-, Oktal-, Dezimal- und Hexadezimalsystem angege
 
 Binäre Zahlen beginnen mit Präfix `0b`, oktale Zahlen beginnen mit Präfix `0` und hexadezimale Zahlen beginnen mit Präfix `0x`. Ohne Präfix werden Zahlen als Dezimalzahlen interpretiert.
 
+# Was war noch mal der Unterschied zwischen Instanzmethoden und statischen Methoden?
 
+Eine Instanz ist ein Objekt einer Klasse. Jede Instanz hat eine Identität, einen Zustand und ein Verhalten.
+
+Instanzmethoden sind Methoden, die auf einem Objekt aufgerufen werden müssen. Diese Methoden haben Zugriff auf die Instanzzustand.
+
+Statische Methoden sind Methoden, die direkt auf der Klasse aufgerufen werden. Sie benötigen kein Objekt, um ihre Aufgabe durchzuführen. Selbst wenn man auf einem Objekt eine statische Methode aufruft, so hat sie dennoch keinen Zugriff auf den Objektzustand. Beispiel: Die Methoden `sin`, `cos`, `pow` der Klasse `Math`. Statische Methoden werden i.d.R. für Algorithmen verwendet oder einfach nur als Hilfsmethoden. Weitere Beispiele: Die Methoden `valueOf` und `format` der Klasse `String`.
+
+In Java werden statische Methoden häufig auch als Factory-Methoden verwendet. Eine Factory-Methode hat die Aufgabe, Objekte einer Klasse zu erzeugen. 
+
+# Wichtige String-Methoden
+
+Merke: Ein String-Objekt ist unveränderlich. Jeder Methodenaufruf auf einem String-Objekt liefert ein neues String-Objekt als Ergebnis!
+
+Achtung: Bei den meisten Methoden wird die Groß- und Kleinschreibung berücksichtigt!
+
+Merke: Wenn du Zeichenketten vergleichst, verwende statt `==` die `equals` bzw. die `equalsIgnoreCase` Methode! Der Vergleichsoperator `==` prüft, ob zwei Variablen auf _dasselbe_ Objekt verweisen, während `equals` prüft, ob die beiden Variablen _gleiche_ Werte enthalten.
+
+```java
+String name = "alice";
+name.length(); // 5
+name.charAt(0); // 'a'
+name.charAt(name.length() - 1); // 'e'
+String message = "The result is: " + 123.5; // "The result is 123.5"
+String.valueOf(true); // "true"
+String.valueOf(456); // "456"
+name = "Alice Wonderland";
+name.substring(6); // "Wonderland"
+name.substring(6, 9); // "Won"
+name.toLowerCase(); // "alice wonderland"
+name.toUpperCase(); // "ALICE WONDERLAND"
+"abc".repeat(3); // "abcabcabc"
+" some text  ".trim() // "some text"
+"His name is \"Bob\"!"; // His name is "Bob"!
+"2024-03-02".split("-"); // String[3] { "2024", "03", "02" }
+"2024.03.02".split("\\."); // String[3] { "2024", "03", "02" }
+String.join("-", "2024", "03", "02"); // "2024-03-02"
+"Alice Bob Charlie".replace(" ", "-"); // "Alice-Bob-Charlie"
+"Alice Bob Charlie".replace(" ", ""); // "AliceBobCharlie"
+"Alice".startsWith("Al"); // true
+"Alice".startsWith("al"); // false
+"Alice".endsWith("ce"); // true
+"Alice".endsWith("e"); // true
+"Alice".endsWith(""); // true
+"Alice".indexOf("ic"); // 2
+"Anna".indexOf("n"); // 1
+"Anna".lastIndexOf("n"); // 2
+// Ergebnis der folgenden Anweisung: "3,00 + 7,000 ergibt A"
+"%.2f + %.3f ergibt %X".formatted(3.0, 7.0, 10);
+"ABC".equals("abc") // false
+"ABC".equalsIgnoreCase("abc"); // true
+```
