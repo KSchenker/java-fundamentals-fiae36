@@ -45,3 +45,26 @@ Mit den Datentypen `double` und `float` können wir Zahlen mit Nachkommastellen 
 Die _betragsmäßig_ größte Zahl ist bei `double` etwa 1.8E308 und die betragsmäßig kleinste Zahl ist 4.9E-328. (E-328 bedeutet "10 hoch -328").
 
 Achtung: Manche Dezimalzahlen, z.B. 0.1, sind im Binärsystem nicht exakt darstellbar. Diese können nur gerundet abgespeichert werden.
+
+# Faustregeln bei Typkonvertierungen
+
+Merke:
+- Ganze Zahlen haben den Datentyp `int`.
+- Zahlen mit Nachkommastellen bzw. Dezimaltrenner (`.`) haben den Datentyp `double`.
+- Verwendet man die wissenschaftliche Notation (z.B. `2e-3`) so hat dieser Wert den Datentyp `double`.
+- Um eine Gleitkommazahl als Float anzugeben, verwende den Suffix `f`. Beispiel: `2.5f`.
+
+Regeln:
+- Wenn man zwei `int` Werte miteinander verrechnet, entsteht wieder ein Ergebnis vom Typ `int`. Nachkommastellen werden abgeschnitten.
+- Verrechnet man zwei Werte miteinander, wobei mindestens ein Wert ein `double` ist, dann ist das Gesamtergebnis vom Typ `double`.
+- Verrechnet man zwei `byte` Werte miteinander, ist das Ergebnis vom Typ `int`.
+- Verrechnet man zwei `short` Werte miteinander, ist das Ergebnis vom Typ `int`.
+- Verrechnet man zwei `float` Werte miteinander, ist das Ergebnis vom Typ `float`.
+
+# Zahlen angeben in verschiedenen Zahlensystemen
+
+In Java können Zahlen im Binär-, Oktal-, Dezimal- und Hexadezimalsystem angegeben werden.
+
+Binäre Zahlen beginnen mit Präfix `0b`, oktale Zahlen beginnen mit Präfix `0` und hexadezimale Zahlen beginnen mit Präfix `0x`. Ohne Präfix werden Zahlen als Dezimalzahlen interpretiert.
+
+
