@@ -422,6 +422,96 @@ Integer.MIN_VALUE
 <h1 id="zahlen-angeben-in-verschiedenen-zahlensystemen">Zahlen angeben in verschiedenen Zahlensystemen</h1>
 <p>In Java können Zahlen im Binär-, Oktal-, Dezimal- und Hexadezimalsystem angegeben werden.</p>
 <p>Binäre Zahlen beginnen mit Präfix <code>0b</code>, oktale Zahlen beginnen mit Präfix <code>0</code> und hexadezimale Zahlen beginnen mit Präfix <code>0x</code>. Ohne Präfix werden Zahlen als Dezimalzahlen interpretiert.</p>
+<h1 id="was-war-noch-mal-der-unterschied-zwischen-instanzmethoden-und-statischen-methoden">Was war noch mal der Unterschied zwischen Instanzmethoden und statischen Methoden?</h1>
+<p>Eine Instanz ist ein Objekt einer Klasse. Jede Instanz hat eine Identität, einen Zustand und ein Verhalten.</p>
+<p>Instanzmethoden sind Methoden, die auf einem Objekt aufgerufen werden müssen. Diese Methoden haben Zugriff auf die Instanzzustand.</p>
+<p>Statische Methoden sind Methoden, die direkt auf der Klasse aufgerufen werden. Sie benötigen kein Objekt, um ihre Aufgabe durchzuführen. Selbst wenn man auf einem Objekt eine statische Methode aufruft, so hat sie dennoch keinen Zugriff auf den Objektzustand. Beispiel: Die Methoden <code>sin</code>, <code>cos</code>, <code>pow</code> der Klasse <code>Math</code>. Statische Methoden werden i.d.R. für Algorithmen verwendet oder einfach nur als Hilfsmethoden. Weitere Beispiele: Die Methoden <code>valueOf</code> und <code>format</code> der Klasse <code>String</code>.</p>
+<p>In Java werden statische Methoden häufig auch als Factory-Methoden verwendet. Eine Factory-Methode hat die Aufgabe, Objekte einer Klasse zu erzeugen.</p>
+<h1 id="wichtige-string-methoden">Wichtige String-Methoden</h1>
+<p>Merke: Ein String-Objekt ist unveränderlich. Jeder Methodenaufruf auf einem String-Objekt liefert ein neues String-Objekt als Ergebnis!</p>
+<p>Achtung: Bei den meisten Methoden wird die Groß- und Kleinschreibung berücksichtigt!</p>
+<p>Merke: Wenn du Zeichenketten vergleichst, verwende statt <code>==</code> die <code>equals</code> bzw. die <code>equalsIgnoreCase</code> Methode! Der Vergleichsoperator <code>==</code> prüft, ob zwei Variablen auf <em>dasselbe</em> Objekt verweisen, während <code>equals</code> prüft, ob die beiden Variablen <em>gleiche</em> Werte enthalten.</p>
+<pre class="hljs"><code><div>String name = <span class="hljs-string">"alice"</span>;
+name.length(); <span class="hljs-comment">// 5</span>
+name.charAt(<span class="hljs-number">0</span>); <span class="hljs-comment">// 'a'</span>
+name.charAt(name.length() - <span class="hljs-number">1</span>); <span class="hljs-comment">// 'e'</span>
+String message = <span class="hljs-string">"The result is: "</span> + <span class="hljs-number">123.5</span>; <span class="hljs-comment">// "The result is 123.5"</span>
+String.valueOf(<span class="hljs-keyword">true</span>); <span class="hljs-comment">// "true"</span>
+String.valueOf(<span class="hljs-number">456</span>); <span class="hljs-comment">// "456"</span>
+name = <span class="hljs-string">"Alice Wonderland"</span>;
+name.substring(<span class="hljs-number">6</span>); <span class="hljs-comment">// "Wonderland"</span>
+name.substring(<span class="hljs-number">6</span>, <span class="hljs-number">9</span>); <span class="hljs-comment">// "Won"</span>
+name.toLowerCase(); <span class="hljs-comment">// "alice wonderland"</span>
+name.toUpperCase(); <span class="hljs-comment">// "ALICE WONDERLAND"</span>
+<span class="hljs-string">"abc"</span>.repeat(<span class="hljs-number">3</span>); <span class="hljs-comment">// "abcabcabc"</span>
+<span class="hljs-string">" some text  "</span>.trim() <span class="hljs-comment">// "some text"</span>
+<span class="hljs-string">"His name is \"Bob\"!"</span>; <span class="hljs-comment">// His name is "Bob"!</span>
+<span class="hljs-string">"2024-03-02"</span>.split(<span class="hljs-string">"-"</span>); <span class="hljs-comment">// String[3] { "2024", "03", "02" }</span>
+<span class="hljs-string">"2024.03.02"</span>.split(<span class="hljs-string">"\\."</span>); <span class="hljs-comment">// String[3] { "2024", "03", "02" }</span>
+String.join(<span class="hljs-string">"-"</span>, <span class="hljs-string">"2024"</span>, <span class="hljs-string">"03"</span>, <span class="hljs-string">"02"</span>); <span class="hljs-comment">// "2024-03-02"</span>
+<span class="hljs-string">"Alice Bob Charlie"</span>.replace(<span class="hljs-string">" "</span>, <span class="hljs-string">"-"</span>); <span class="hljs-comment">// "Alice-Bob-Charlie"</span>
+<span class="hljs-string">"Alice Bob Charlie"</span>.replace(<span class="hljs-string">" "</span>, <span class="hljs-string">""</span>); <span class="hljs-comment">// "AliceBobCharlie"</span>
+<span class="hljs-string">"Alice"</span>.startsWith(<span class="hljs-string">"Al"</span>); <span class="hljs-comment">// true</span>
+<span class="hljs-string">"Alice"</span>.startsWith(<span class="hljs-string">"al"</span>); <span class="hljs-comment">// false</span>
+<span class="hljs-string">"Alice"</span>.endsWith(<span class="hljs-string">"ce"</span>); <span class="hljs-comment">// true</span>
+<span class="hljs-string">"Alice"</span>.endsWith(<span class="hljs-string">"e"</span>); <span class="hljs-comment">// true</span>
+<span class="hljs-string">"Alice"</span>.endsWith(<span class="hljs-string">""</span>); <span class="hljs-comment">// true</span>
+<span class="hljs-string">"Alice"</span>.indexOf(<span class="hljs-string">"ic"</span>); <span class="hljs-comment">// 2</span>
+<span class="hljs-string">"Anna"</span>.indexOf(<span class="hljs-string">"n"</span>); <span class="hljs-comment">// 1</span>
+<span class="hljs-string">"Anna"</span>.lastIndexOf(<span class="hljs-string">"n"</span>); <span class="hljs-comment">// 2</span>
+<span class="hljs-comment">// Ergebnis der folgenden Anweisung: "3,00 + 7,000 ergibt A"</span>
+<span class="hljs-string">"%.2f + %.3f ergibt %X"</span>.formatted(<span class="hljs-number">3.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">10</span>);
+<span class="hljs-string">"ABC"</span>.equals(<span class="hljs-string">"abc"</span>) <span class="hljs-comment">// false</span>
+<span class="hljs-string">"ABC"</span>.equalsIgnoreCase(<span class="hljs-string">"abc"</span>); <span class="hljs-comment">// true</span>
+<span class="hljs-string">"Alice Wonderland"</span>.contains(<span class="hljs-string">"Won"</span>); <span class="hljs-comment">// true</span>
+<span class="hljs-string">"abc"</span>.compareTo(<span class="hljs-string">"abd"</span>); <span class="hljs-comment">// -1, d.h. "abc" &lt; "abd"</span>
+<span class="hljs-string">"abd"</span>.compareTo(<span class="hljs-string">"abc"</span>); <span class="hljs-comment">// 1, d.h. "abd" &gt; "abc"</span>
+<span class="hljs-string">"abc"</span>.compareTo(<span class="hljs-string">"abc"</span>); <span class="hljs-comment">// 0, d.h. "abc" = "abc"</span>
+</div></code></pre>
+<h1 id="bearbeitbare-zeichenketten-mit-dem-stringbuilder">Bearbeitbare Zeichenketten mit dem StringBuilder</h1>
+<p>Mit der Klasse StringBuilder können wir Zeichenpuffer erstellen und diese Zeichen direkt bearbeiten, ohne jedes Mal einen neuen String zu erzeugen. Das ist wesentlich effizienter und ressourcenschonender.</p>
+<p>Merke: Methoden verändern das StringBuilder-Objekt selbst. Um ein String-Builder Objekt in einen String zu konvertieren, rufe Methode <code>toString</code> auf.</p>
+<p>Hinweis: Viele Methoden, die in der Klasse String vorhanden sind, gibt es auch im StringBuilder.</p>
+<pre class="hljs"><code><div>String lastName = <span class="hljs-string">"Wonderland"</span>;
+StringBuilder buffer = <span class="hljs-keyword">new</span> StringBuilder(lastName);
+buffer.insert(<span class="hljs-number">0</span>, <span class="hljs-string">"Alice "</span>); <span class="hljs-comment">// "Alice Wonderland"</span>
+buffer.setCharAt(<span class="hljs-number">0</span>, <span class="hljs-string">'a'</span>); <span class="hljs-comment">// "alice Wonderland"</span>
+buffer.delete(<span class="hljs-number">0</span>, <span class="hljs-number">6</span>); <span class="hljs-comment">// "Wonderland"</span>
+buffer.append(<span class="hljs-string">" from Oz"</span>); <span class="hljs-comment">// "Wonderland from Oz"</span>
+String newLastName = buffer.toString();
+</div></code></pre>
+<h1 id="homogene-daten-speichern-mit-arrays">Homogene Daten speichern mit Arrays</h1>
+<p>Ein Array ist eine lineare Datenstruktur, die ihre Elemente sequenziell anordnet. Jedes Element hat eine feste Position (Index). Das erste Element hat den Index 0. Die Elemente müssen denselben Datentyp haben.</p>
+<p>Merke: Ein Array kann strukturell nicht verändert werden. D.h. Elemente können weder entfernt noch eingefügt werden. Ein Element lässt sich jedoch mit einem neuen Element ersetzen.</p>
+<p>Hinweis: Die Kurzschreibweise <code>{ e1, e2, ... }</code> ist nur bei <em>Variablendefinitionen</em> zulässig. Will man der Array-Variablen später ein neues Array-Objekt zuweisen, geht dies nur mit dem Operator <code>new</code>.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span>[] data = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">100</span>]; <span class="hljs-comment">// int[100] { 0, 0, ..., 0 }</span>
+<span class="hljs-keyword">int</span>[] primes = { <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>, <span class="hljs-number">11</span> };
+primes.length; <span class="hljs-comment">// 5</span>
+primes[<span class="hljs-number">0</span>]; <span class="hljs-comment">// 2</span>
+primes[<span class="hljs-number">1</span>]; <span class="hljs-comment">// 3</span>
+primes[<span class="hljs-number">0</span>] = <span class="hljs-number">19</span>; <span class="hljs-comment">// int[5] { 19, 3, 5, 7, 11 }</span>
+primes = { <span class="hljs-number">11</span>, <span class="hljs-number">13</span>, <span class="hljs-number">17</span>, <span class="hljs-number">19</span> }; <span class="hljs-comment">// Fehler!!!</span>
+primes = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[] { <span class="hljs-number">11</span>, <span class="hljs-number">13</span>, <span class="hljs-number">17</span>, <span class="hljs-number">19</span> }; <span class="hljs-comment">// int[4] {...}</span>
+</div></code></pre>
+<p>Die Hilfsklasse <code>java.util.Arrays</code> bietet zahlreiche Methoden an, um Array-Objekte zu verarbeiten. Beispiele:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span>[] numbers = { <span class="hljs-number">6</span>, <span class="hljs-number">2</span>, <span class="hljs-number">7</span>, <span class="hljs-number">1</span> };
+Arrays.sort(numbers); <span class="hljs-comment">// int[4] { 1, 2, 6, 7}</span>
+Arrays.fill(numbers, <span class="hljs-number">2</span>); <span class="hljs-comment">// int[4] { 2, 2, 2, 2}</span>
+<span class="hljs-keyword">int</span>[] someOtherNumbers = { <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span> };
+Arrays.equals(numbers, someOtherNumbers); <span class="hljs-comment">// true</span>
+someOtherNumbers = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[] { <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span> };
+Arrays.equals(numbers, someOtherNumbers); <span class="hljs-comment">// false</span>
+String[] names = { <span class="hljs-string">"alice"</span>, <span class="hljs-string">"bob"</span>, <span class="hljs-string">"charlie"</span>, <span class="hljs-string">"damian"</span> };
+<span class="hljs-comment">// Achtung: binarySearch erwartet, dass die Elemente des Arrays </span>
+<span class="hljs-comment">// aufsteigend sortiert sind!</span>
+Arrays.binarySearch(names, <span class="hljs-string">"bob"</span>); <span class="hljs-comment">// 1</span>
+<span class="hljs-keyword">int</span>[] b1 = { <span class="hljs-number">7</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span> };
+<span class="hljs-keyword">int</span>[] b2 = { <span class="hljs-number">7</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> };
+Arrays.compare(b1, b2); <span class="hljs-comment">// -1, d.h. b1 &lt; b2</span>
+Arrays.compare(b2, b1); <span class="hljs-comment">// 1, d.h. b2 &gt; b1</span>
+Arrays.compare(b2, b2); <span class="hljs-comment">// 0, d.h. b2 gleich b2</span>
+<span class="hljs-keyword">int</span>[] copy = b1.clone(); <span class="hljs-comment">// int[3] { 7, 3, 5 }</span>
+</div></code></pre>
 
 </body>
 </html>

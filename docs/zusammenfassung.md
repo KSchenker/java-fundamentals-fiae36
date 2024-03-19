@@ -118,4 +118,68 @@ String.join("-", "2024", "03", "02"); // "2024-03-02"
 "%.2f + %.3f ergibt %X".formatted(3.0, 7.0, 10);
 "ABC".equals("abc") // false
 "ABC".equalsIgnoreCase("abc"); // true
+"Alice Wonderland".contains("Won"); // true
+"abc".compareTo("abd"); // -1, d.h. "abc" < "abd"
+"abd".compareTo("abc"); // 1, d.h. "abd" > "abc"
+"abc".compareTo("abc"); // 0, d.h. "abc" = "abc"
 ```
+
+# Bearbeitbare Zeichenketten mit dem StringBuilder
+
+Mit der Klasse StringBuilder können wir Zeichenpuffer erstellen und diese Zeichen direkt bearbeiten, ohne jedes Mal einen neuen String zu erzeugen. Das ist wesentlich effizienter und ressourcenschonender.
+
+Merke: Methoden verändern das StringBuilder-Objekt selbst. Um ein String-Builder Objekt in einen String zu konvertieren, rufe Methode `toString` auf.
+
+Hinweis: Viele Methoden, die in der Klasse String vorhanden sind, gibt es auch im StringBuilder.
+
+```java
+String lastName = "Wonderland";
+StringBuilder buffer = new StringBuilder(lastName);
+buffer.insert(0, "Alice "); // "Alice Wonderland"
+buffer.setCharAt(0, 'a'); // "alice Wonderland"
+buffer.delete(0, 6); // "Wonderland"
+buffer.append(" from Oz"); // "Wonderland from Oz"
+String newLastName = buffer.toString();
+```
+
+# Homogene Daten speichern mit Arrays
+
+Ein Array ist eine lineare Datenstruktur, die ihre Elemente sequenziell anordnet. Jedes Element hat eine feste Position (Index). Das erste Element hat den Index 0. Die Elemente müssen denselben Datentyp haben. 
+
+Merke: Ein Array kann strukturell nicht verändert werden. D.h. Elemente können weder entfernt noch eingefügt werden. Ein Element lässt sich jedoch mit einem neuen Element ersetzen.
+
+Hinweis: Die Kurzschreibweise `{ e1, e2, ... }` ist nur bei _Variablendefinitionen_ zulässig. Will man der Array-Variablen später ein neues Array-Objekt zuweisen, geht dies nur mit dem Operator `new`.
+
+```java
+int[] data = new int[100]; // int[100] { 0, 0, ..., 0 }
+int[] primes = { 2, 3, 5, 7, 11 };
+primes.length; // 5
+primes[0]; // 2
+primes[1]; // 3
+primes[0] = 19; // int[5] { 19, 3, 5, 7, 11 }
+primes = { 11, 13, 17, 19 }; // Fehler!!!
+primes = new int[] { 11, 13, 17, 19 }; // int[4] {...}
+```
+
+Die Hilfsklasse `java.util.Arrays` bietet zahlreiche Methoden an, um Array-Objekte zu verarbeiten. Beispiele:
+
+```java
+int[] numbers = { 6, 2, 7, 1 };
+Arrays.sort(numbers); // int[4] { 1, 2, 6, 7}
+Arrays.fill(numbers, 2); // int[4] { 2, 2, 2, 2}
+int[] someOtherNumbers = { 2, 2, 2, 2 };
+Arrays.equals(numbers, someOtherNumbers); // true
+someOtherNumbers = new int[] { 2, 2, 2 };
+Arrays.equals(numbers, someOtherNumbers); // false
+String[] names = { "alice", "bob", "charlie", "damian" };
+// Achtung: binarySearch erwartet, dass die Elemente des Arrays 
+// aufsteigend sortiert sind!
+Arrays.binarySearch(names, "bob"); // 1
+int[] b1 = { 7, 3, 5 };
+int[] b2 = { 7, 3, 5, 6 };
+Arrays.compare(b1, b2); // -1, d.h. b1 < b2
+Arrays.compare(b2, b1); // 1, d.h. b2 > b1
+Arrays.compare(b2, b2); // 0, d.h. b2 gleich b2
+int[] copy = b1.clone(); // int[3] { 7, 3, 5 }
+```
+
