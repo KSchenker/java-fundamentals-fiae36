@@ -225,7 +225,7 @@ pre code {
 }
 
 </style>
-
+<link rel="stylesheet" href="file:///c%3A/Users/K_Schenker/Desktop/dev/settings/markdown-style.css" type="text/css">
 <style>
 /* Tomorrow Theme */
 /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
@@ -541,6 +541,28 @@ Arrays.copyOfRange(numbers, <span class="hljs-number">3</span>, <span class="hlj
 }
 </div></code></pre>
 <h1 id="operatoren">Operatoren</h1>
+<p>Jeder Operator hat eine vordefinierte Priorität und ggf. eine Assoziativität. Die Assoziativität legt fest, ob zwei nebeneinanderstehende Operatoren gleicher Priorität von links oder rechts ausgewertet werden. Beispiel:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> age = <span class="hljs-number">17</span>;
+<span class="hljs-keyword">boolean</span> isAdult = age &gt;= <span class="hljs-number">18</span>;
+<span class="hljs-comment">// Zwei Operatoren: &gt;= und =</span>
+<span class="hljs-comment">// Operatoren nach Priorität: &gt;=, =</span>
+<span class="hljs-comment">// (boolean isAdult = (age &gt;= 18))</span>
+
+<span class="hljs-comment">// 4 Operatoren: =, +, *, -</span>
+<span class="hljs-comment">// Operatoren nach Priorität : *, +/-, =</span>
+<span class="hljs-keyword">double</span> result = <span class="hljs-number">8</span> + <span class="hljs-number">3</span> * <span class="hljs-number">7</span> - <span class="hljs-number">1</span>
+<span class="hljs-comment">// Auswertung durch Compiler:</span>
+<span class="hljs-comment">// (double result = ((8 + (3 * 7)) - 1))</span>
+
+<span class="hljs-comment">// 3 Operatoren: =, =, +</span>
+<span class="hljs-comment">// Operatoren nach Priorität: +, =</span>
+<span class="hljs-comment">// Assoziativität von = ist rechts.</span>
+<span class="hljs-keyword">int</span> x;
+<span class="hljs-keyword">int</span> y;
+x = y = <span class="hljs-number">3</span> + <span class="hljs-number">1</span>
+<span class="hljs-comment">// Auswertung durch Compiler:</span>
+<span class="hljs-comment">// (x = (y = (3 + 1)))</span>
+</div></code></pre>
 <table>
 <thead>
 <tr>
@@ -660,8 +682,122 @@ Arrays.copyOfRange(numbers, <span class="hljs-number">3</span>, <span class="hlj
 <td>Member-Access-Operator (Zugriff auf Felder, Methoden)</td>
 <td>variabel</td>
 </tr>
+<tr>
+<td>=</td>
+<td>Zuweisungsoperator</td>
+<td>variabel</td>
+</tr>
+<tr>
+<td>++</td>
+<td>Inkrement-Operator (Addieren von 1)</td>
+<td>numerisch</td>
+</tr>
+<tr>
+<td>--</td>
+<td>Dekrement-Operator (Subtrahieren von 1)</td>
+<td>numerisch</td>
+</tr>
 </tbody>
 </table>
+<h1 id="wiederholungen-mit-der-while-schleife">Wiederholungen mit der while-Schleife</h1>
+<p>Hinweis: Die Anweisung <code>break</code> innerhalb der while-Schleife beendet die Schleife vorzeitig. Die Anweisung <code>continue</code> hingegen, springt direkt zum Kopf der Schleife, damit die Bedingung neu geprüft wird.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">while</span> (index &lt; args.length) {
+    System.out.printf(<span class="hljs-string">"Argument %d: %s\n"</span>, index + <span class="hljs-number">1</span>, args[index]);
+    index++;
+}
+</div></code></pre>
+<h1 id="wiederholungen-mit-der-do-while-schleife">Wiederholungen mit der do-while-Schleife</h1>
+<p>Diese Schleife ist fußgesteuert. Sie wird mindestens einmal ausgeführt. Die <code>break</code> Anweisung verlässt die Schleife vorzeitig. Die <code>continue</code> Anweisung springt direkt zum &quot;Fuß&quot; der Schleife, also zum Bedingungsausdruck.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">do</span> {
+    System.out.printf(<span class="hljs-string">"Argument %d: %s\n"</span>, index + <span class="hljs-number">1</span>, args[index]);
+    index++;
+} <span class="hljs-keyword">while</span> (index &lt; args.length); <span class="hljs-comment">// &lt;- Semikolon!</span>
+</div></code></pre>
+<h1 id="wiederholungen-mit-der-for-schleife">Wiederholungen mit der for-Schleife</h1>
+<p>Die for-Schleife besteht aus drei Bereichen: Initialisierungsbereich, Bedingungsbereich und &quot;Iterationsbereich&quot;.</p>
+<p>Der Initialisierungsbereich wird einmal bei Betreten der Schleife ausgeführt. Der Bedingungsbereich wird <em>vor</em> jedem Schleifendurchlauf geprüft. Der Iterationsbereich wird <em>nach</em> jedem Schleifendurchlauf ausgeführt.</p>
+<p>Die Anweisung <code>break</code> verlässt die Schleife vorzeitig, ohne dass der Iterationsbereich noch einmal ausgeführt wird. Die Anweisung <code>continue</code> springt direkt zum Iterationsbereich und danach zum Bedingungsbereich.</p>
+<p>Hinweis: Lässt man den Bedingungsbereich leer, ist das gleichbedeutend mit <code>true</code>. Die Schleife wird also unendlich oft ausgeführt - eine sogenannte <em>Endlosschleife</em>.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; args.length; i++) {
+    System.out.printf(<span class="hljs-string">"Argument %d: %s\n"</span>, i + <span class="hljs-number">1</span>, args[i]);
+}
+
+System.out.println(<span class="hljs-string">"\n\n"</span>); <span class="hljs-comment">// Leerzeilen einfügen.</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> a = <span class="hljs-number">0</span>, b = <span class="hljs-number">5</span> ; b &gt;= <span class="hljs-number">0</span> ; a++, b--) {
+    System.out.printf(<span class="hljs-string">"a = %d und b = %d\n"</span>, a, b);
+}
+</div></code></pre>
+<h1 id="wiederholen-mit-der-foreach-schleife">Wiederholen mit der foreach-Schleife</h1>
+<p>Die foreach-Schleife vereinfacht die Verarbeitung von sequenziellen Datenmengen. Für jedes Element der Datensequenz wird der Schleifenrumpf ausgeführt. Um das Datenelement anzusprechen, das gerade abgearbeitet wird, muss man eine Laufvariable definieren.</p>
+<p>Hinweis: Die foreach-Schleife funktioniert mit allen Datenobjekten, deren Datentyp die Schnittstelle <code>Iterable</code> implementiert.</p>
+<p>Allgemeine Syntax:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> (Datentyp element : datenmenge) {
+    <span class="hljs-comment">// tue etwas mit element</span>
+}
+</div></code></pre>
+<p>Hier ein paar konkrete Beispiele:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> (String argument : args) {
+    System.out.printf(<span class="hljs-string">"Argument: %s\n"</span>, argument);
+}
+
+<span class="hljs-keyword">int</span>[] primes = { <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>, <span class="hljs-number">11</span>, <span class="hljs-number">13</span> };
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> prime : primes) {
+    System.out.println(prime);
+}
+
+<span class="hljs-comment">// Klasse String ist kein Iterable. Deshalb muss ein String</span>
+<span class="hljs-comment">// vorher in ein Array konvertiert werden.</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">char</span> c : <span class="hljs-string">"Alice"</span>.toCharArray()) {
+    System.out.printf(<span class="hljs-string">"%c "</span>, c);
+}
+
+<span class="hljs-comment">// Die Laufvariable kann nicht dazu benutzt werden, Elemente</span>
+<span class="hljs-comment">// im Array zu überschreiben! Die Laufvariable ist lediglich</span>
+<span class="hljs-comment">// eine Kopie des Elements.</span>
+<span class="hljs-keyword">int</span>[] numbers = { <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> };
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> n : numbers) {
+    n = n * <span class="hljs-number">2</span>; <span class="hljs-comment">// Kein Effekt auf numbers!</span>
+}
+</div></code></pre>
+<h1 id="fallunterscheidungen-mit-der-switch-anweisungexpression">Fallunterscheidungen mit der switch-Anweisung/Expression</h1>
+<p>Mittlerweile unterstützt die <code>switch</code> Anweisung beliebige Datentypen. Früher war man auf <code>int</code>, <code>char</code>, <code>String</code> beschränkt. Switch Statements unterstützen neuerdings auch sogenannte Patterns. Das ist ein erweitertes Feature, das wir erst später behandeln.</p>
+<p>Hinweis: Verwendet man Zeichenketten (<code>String</code>) wird der Vergleich mittels <code>equals</code> vorgenommen. Die Groß und Kleinschreibung wird dadurch also berücksichtigt.</p>
+<p>Besonders hilfreich bei der modernen switch-Variante ist das automatische Einfügen von <code>break</code>. Diese Funktionalität wird aber nur dann bereitgestellt, wenn wir nach dem Schlüsselwort <code>case</code> einen Pfeil <code>-&gt;</code> verwenden, statt eines Doppelpunktes <code>:</code>.</p>
+<p>Hinweis: Fall-Throughs sind in Java möglich, wenn man das <code>break</code> in einem <code>case</code> weglässt.</p>
+<p>Allgemeine Syntax:</p>
+<pre class="hljs"><code><div><span class="hljs-comment">// Alte Variante</span>
+<span class="hljs-keyword">switch</span> (ausdruck) {
+    <span class="hljs-keyword">case</span> konstante1:
+        anweisungen;
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> konstante2:
+        anweisungen;
+        <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">default</span>:
+        anweisungen;
+        <span class="hljs-keyword">break</span>;
+}
+
+<span class="hljs-comment">// Moderne Variante</span>
+<span class="hljs-keyword">switch</span> (ausdruck) {
+    <span class="hljs-comment">// Wird {} verwendet, entfällt das Semikolon. Es können</span>
+    <span class="hljs-comment">// im {} Block mehrere Anweisungen ausgeführt werden.</span>
+    <span class="hljs-keyword">case</span> konstante1, konstante2 -&gt; { anweisungen }
+    <span class="hljs-comment">// Eine Anweisung ohne {} Block benötigt ein Semikolon.</span>
+    <span class="hljs-keyword">case</span> konstante3 -&gt; anweisung;
+    <span class="hljs-keyword">default</span> -&gt; anweisung;
+}
+
+<span class="hljs-comment">// In Form einer Expression:</span>
+<span class="hljs-keyword">switch</span> (ausdruck) {
+    <span class="hljs-comment">// Schlüsselwort yield dient zur Rückgabe eines Wertes</span>
+    <span class="hljs-comment">// in einem {} Block.</span>
+    <span class="hljs-keyword">case</span> konstante1, konstante2 -&gt; { anweisungen; yield wert; }
+    <span class="hljs-comment">// Angabe von yield hier nicht notwendig, da kein {} Block.</span>
+    <span class="hljs-keyword">case</span> konstante3 -&gt; wert;
+    <span class="hljs-keyword">default</span> -&gt; wert;
+}
+</div></code></pre>
 
 </body>
 </html>

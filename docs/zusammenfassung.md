@@ -316,3 +316,91 @@ for (int a = 0, b = 5 ; b >= 0 ; a++, b--) {
     System.out.printf("a = %d und b = %d\n", a, b);
 }
 ```
+
+# Wiederholen mit der foreach-Schleife
+
+Die foreach-Schleife vereinfacht die Verarbeitung von sequenziellen Datenmengen. Für jedes Element der Datensequenz wird der Schleifenrumpf ausgeführt. Um das Datenelement anzusprechen, das gerade abgearbeitet wird, muss man eine Laufvariable definieren.
+
+Hinweis: Die foreach-Schleife funktioniert mit allen Datenobjekten, deren Datentyp die Schnittstelle `Iterable` implementiert.
+
+Allgemeine Syntax:
+
+```java
+for (Datentyp element : datenmenge) {
+    // tue etwas mit element
+}
+```
+
+Hier ein paar konkrete Beispiele:
+
+```java
+for (String argument : args) {
+    System.out.printf("Argument: %s\n", argument);
+}
+
+int[] primes = { 2, 3, 5, 7, 11, 13 };
+for (int prime : primes) {
+    System.out.println(prime);
+}
+
+// Klasse String ist kein Iterable. Deshalb muss ein String
+// vorher in ein Array konvertiert werden.
+for (char c : "Alice".toCharArray()) {
+    System.out.printf("%c ", c);
+}
+
+// Die Laufvariable kann nicht dazu benutzt werden, Elemente
+// im Array zu überschreiben! Die Laufvariable ist lediglich
+// eine Kopie des Elements.
+int[] numbers = { 1, 2, 3 };
+for (int n : numbers) {
+    n = n * 2; // Kein Effekt auf numbers!
+}
+```
+
+# Fallunterscheidungen mit der switch-Anweisung/Expression
+
+Mittlerweile unterstützt die `switch` Anweisung beliebige Datentypen. Früher war man auf `int`, `char`, `String` beschränkt. Switch Statements unterstützen neuerdings auch sogenannte Patterns. Das ist ein erweitertes Feature, das wir erst später behandeln.
+
+Hinweis: Verwendet man Zeichenketten (`String`) wird der Vergleich mittels `equals` vorgenommen. Die Groß und Kleinschreibung wird dadurch also berücksichtigt.
+
+Besonders hilfreich bei der modernen switch-Variante ist das automatische Einfügen von `break`. Diese Funktionalität wird aber nur dann bereitgestellt, wenn wir nach dem Schlüsselwort `case` einen Pfeil `->` verwenden, statt eines Doppelpunktes `:`.
+
+Hinweis: Fall-Throughs sind in Java möglich, wenn man das `break` in einem `case` weglässt.
+
+Allgemeine Syntax:
+
+```java
+// Alte Variante
+switch (ausdruck) {
+    case konstante1:
+        anweisungen;
+        break;
+    case konstante2:
+        anweisungen;
+        break;
+    default:
+        anweisungen;
+        break;
+}
+
+// Moderne Variante
+switch (ausdruck) {
+    // Wird {} verwendet, entfällt das Semikolon. Es können
+    // im {} Block mehrere Anweisungen ausgeführt werden.
+    case konstante1, konstante2 -> { anweisungen }
+    // Eine Anweisung ohne {} Block benötigt ein Semikolon.
+    case konstante3 -> anweisung;
+    default -> anweisung;
+}
+
+// In Form einer Expression:
+switch (ausdruck) {
+    // Schlüsselwort yield dient zur Rückgabe eines Wertes
+    // in einem {} Block.
+    case konstante1, konstante2 -> { anweisungen; yield wert; }
+    // Angabe von yield hier nicht notwendig, da kein {} Block.
+    case konstante3 -> wert;
+    default -> wert;
+}
+```
