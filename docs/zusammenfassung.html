@@ -378,6 +378,11 @@ javac MyClass.java
 <span class="hljs-comment"># Mit dem Java Launcher eine Klasse starten (deren main-Methode).</span>
 java MyClass
 </div></code></pre>
+<p>Hinweis: Kleinere Programme können mit mit dem Java Launcher direkt übersetzt und sofort danach ausgeführt werden. Allerdings wird die class Datei nicht gespeichert. Beispiel:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Launcher erkennt, dass es sich um eine Quelltextdatei handelt.</span>
+<span class="hljs-comment"># Er übersetzt zuerst die Datei und führt sie gleich danach aus.</span>
+java MyApp.java
+</div></code></pre>
 <h1 id="wozu-brauchen-wir-datentypen">Wozu brauchen wir Datentypen?</h1>
 <ul>
 <li>Ein Datentyp definiert, wie ein Bitmuster im Speicher zu interpretieren ist. Beispiel: Was bedeutet die Bitfolge <code>011001</code>?</li>
@@ -511,7 +516,152 @@ Arrays.compare(b1, b2); <span class="hljs-comment">// -1, d.h. b1 &lt; b2</span>
 Arrays.compare(b2, b1); <span class="hljs-comment">// 1, d.h. b2 &gt; b1</span>
 Arrays.compare(b2, b2); <span class="hljs-comment">// 0, d.h. b2 gleich b2</span>
 <span class="hljs-keyword">int</span>[] copy = b1.clone(); <span class="hljs-comment">// int[3] { 7, 3, 5 }</span>
+numbers = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[] { <span class="hljs-number">5</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">10</span>, <span class="hljs-number">19</span>, <span class="hljs-number">25</span> };
+Arrays.copyOf(numbers, <span class="hljs-number">3</span>); <span class="hljs-comment">// int[3] { 5, 2, 1 }</span>
+Arrays.copyOfRange(numbers, <span class="hljs-number">3</span>, <span class="hljs-number">3</span> + <span class="hljs-number">2</span>); <span class="hljs-comment">// int[2] { 10, 19 }</span>
 </div></code></pre>
+<h1 id="verzweigen-mit-der-if-anweisung">Verzweigen mit der if-Anweisung</h1>
+<p>Hinweis: Die Bedingungen müssen boolesche Ausdrücke sein, d.h. die Berechnungen müssen entweder <code>true</code> oder <code>false</code> ergeben. Numerische Werte sind nicht erlaubt.</p>
+<p>Die Verzweigungen <code>else if</code> und <code>else</code> sind immer optional.</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+    <span class="hljs-keyword">if</span> (args.length &gt;= <span class="hljs-number">3</span>) {
+        System.out.printf(
+            <span class="hljs-string">"Name mit Anrede: %s %s %s\n"</span>, 
+            args[<span class="hljs-number">0</span>], args[<span class="hljs-number">1</span>], args[<span class="hljs-number">2</span>]);
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (args.length &gt;= <span class="hljs-number">2</span>) {
+        System.out.printf(
+            <span class="hljs-string">"Name: %s %s\n"</span>, args[<span class="hljs-number">0</span>], args[<span class="hljs-number">1</span>]);
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (args.length &gt;= <span class="hljs-number">1</span>) {
+        System.out.printf(<span class="hljs-string">"Vorname: %s\n"</span>, args[<span class="hljs-number">0</span>]);
+    } <span class="hljs-keyword">else</span> {
+        System.out.println(
+            <span class="hljs-string">"Rufen Sie das Program wie folgt auf:"</span> 
+            + <span class="hljs-string">"[Anrede] Vorname Nachname"</span>);
+    }
+}
+</div></code></pre>
+<h1 id="operatoren">Operatoren</h1>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Bedeutung</th>
+<th>Ergebnisdatentyp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>==</td>
+<td>Vergleicht Werte miteinander; Prüft auf Identität</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>!=</td>
+<td>Testet auf Ungleichheit bzw. auf unterschiedl. Identität</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>Kleiner als</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>Größer als</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>Kleiner gleich als</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>&gt;=</td>
+<td>Größer gleich als</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>&amp;&amp;</td>
+<td>Logische UND-Verknüpfung</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>||</td>
+<td>Logische ODER-Verknüpfung</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>!</td>
+<td>Logische Negation</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>+</td>
+<td>Addition oder String-Konkatenation</td>
+<td>Numerisch oder String</td>
+</tr>
+<tr>
+<td>-</td>
+<td>Subtraktion</td>
+<td>Numerisch</td>
+</tr>
+<tr>
+<td>*</td>
+<td>Multiplikation</td>
+<td>Numerisch</td>
+</tr>
+<tr>
+<td>/</td>
+<td>Division (Integerdivision / Gleitkommadivision)</td>
+<td>Numerisch</td>
+</tr>
+<tr>
+<td>%</td>
+<td>Modulo (Division mit Rest)</td>
+<td>Numerisch</td>
+</tr>
+<tr>
+<td>&gt;&gt;</td>
+<td>Bitshift nach rechts</td>
+<td>Numerisch</td>
+</tr>
+<tr>
+<td>&lt;&lt;</td>
+<td>Bitshift nach links</td>
+<td>Numerisch</td>
+</tr>
+<tr>
+<td>&amp;</td>
+<td>Bitweises UND</td>
+<td>Numerisch</td>
+</tr>
+<tr>
+<td>|</td>
+<td>Bitweises ODER</td>
+<td>Numerisch</td>
+</tr>
+<tr>
+<td>^</td>
+<td>Bitweises ENTWEDER-ODER (XOR)</td>
+<td>Numerisch</td>
+</tr>
+<tr>
+<td>()</td>
+<td>Call-Operator (Methoden aufrufen)</td>
+<td>variabel</td>
+</tr>
+<tr>
+<td>[]</td>
+<td>Index-Operator (Elementzugriff bei Arrays)</td>
+<td>variabel</td>
+</tr>
+<tr>
+<td>.</td>
+<td>Member-Access-Operator (Zugriff auf Felder, Methoden)</td>
+<td>variabel</td>
+</tr>
+</tbody>
+</table>
 
 </body>
 </html>

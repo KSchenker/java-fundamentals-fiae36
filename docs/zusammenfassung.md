@@ -14,6 +14,14 @@ javac MyClass.java
 java MyClass
 ```
 
+Hinweis: Kleinere Programme können mit mit dem Java Launcher direkt übersetzt und sofort danach ausgeführt werden. Allerdings wird die class Datei nicht gespeichert. Beispiel:
+
+```powershell
+# Launcher erkennt, dass es sich um eine Quelltextdatei handelt.
+# Er übersetzt zuerst die Datei und führt sie gleich danach aus.
+java MyApp.java
+```
+
 # Wozu brauchen wir Datentypen?
 
 - Ein Datentyp definiert, wie ein Bitmuster im Speicher zu interpretieren ist. Beispiel: Was bedeutet die Bitfolge `011001`?
@@ -181,5 +189,60 @@ Arrays.compare(b1, b2); // -1, d.h. b1 < b2
 Arrays.compare(b2, b1); // 1, d.h. b2 > b1
 Arrays.compare(b2, b2); // 0, d.h. b2 gleich b2
 int[] copy = b1.clone(); // int[3] { 7, 3, 5 }
+numbers = new int[] { 5, 2, 1, 10, 19, 25 };
+Arrays.copyOf(numbers, 3); // int[3] { 5, 2, 1 }
+Arrays.copyOfRange(numbers, 3, 3 + 2); // int[2] { 10, 19 }
 ```
+
+# Verzweigen mit der if-Anweisung
+
+Hinweis: Die Bedingungen müssen boolesche Ausdrücke sein, d.h. die Berechnungen müssen entweder `true` oder `false` ergeben. Numerische Werte sind nicht erlaubt.
+
+Die Verzweigungen `else if` und `else` sind immer optional.
+
+```java
+public static void main(String[] args) {
+    if (args.length >= 3) {
+        System.out.printf(
+            "Name mit Anrede: %s %s %s\n", 
+            args[0], args[1], args[2]);
+    } else if (args.length >= 2) {
+        System.out.printf(
+            "Name: %s %s\n", args[0], args[1]);
+    } else if (args.length >= 1) {
+        System.out.printf("Vorname: %s\n", args[0]);
+    } else {
+        System.out.println(
+            "Rufen Sie das Program wie folgt auf:" 
+            + "[Anrede] Vorname Nachname");
+    }
+}
+```
+
+# Operatoren
+
+| Operator | Bedeutung                                                | Ergebnisdatentyp      |
+| -------- | -------------------------------------------------------- | --------------------- |
+| ==       | Vergleicht Werte miteinander; Prüft auf Identität        | Boolean               |
+| !=       | Testet auf Ungleichheit bzw. auf unterschiedl. Identität | Boolean               |
+| <        | Kleiner als                                              | Boolean               |
+| >        | Größer als                                               | Boolean               |
+| <=       | Kleiner gleich als                                       | Boolean               |
+| >=       | Größer gleich als                                        | Boolean               |
+| &&       | Logische UND-Verknüpfung                                 | Boolean               |
+| \|\|     | Logische ODER-Verknüpfung                                | Boolean               |
+| !        | Logische Negation                                        | Boolean               |
+| +        | Addition oder String-Konkatenation                       | Numerisch oder String |
+| -        | Subtraktion                                              | Numerisch             |
+| *        | Multiplikation                                           | Numerisch             |
+| /        | Division (Integerdivision / Gleitkommadivision)          | Numerisch             |
+| %        | Modulo (Division mit Rest)                               | Numerisch             |
+| >>       | Bitshift nach rechts                                     | Numerisch             |
+| <<       | Bitshift nach links                                      | Numerisch             |
+| &        | Bitweises UND                                            | Numerisch             |
+| \|       | Bitweises ODER                                           | Numerisch             |
+| ^        | Bitweises ENTWEDER-ODER (XOR)                            | Numerisch             |
+| ()       | Call-Operator (Methoden aufrufen)                        | variabel              |
+| []       | Index-Operator (Elementzugriff bei Arrays)               | variabel              |
+| .        | Member-Access-Operator (Zugriff auf Felder, Methoden)    | variabel              |
 
