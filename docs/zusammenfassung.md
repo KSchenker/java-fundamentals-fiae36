@@ -404,3 +404,7 @@ switch (ausdruck) {
     default -> wert;
 }
 ```
+
+# Fehler behandeln mit try-catch-finally
+
+<!-- TODO: Beispiele und Kurzbeschreibung -->
