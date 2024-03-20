@@ -221,6 +221,31 @@ public static void main(String[] args) {
 
 # Operatoren
 
+Jeder Operator hat eine vordefinierte Priorität und ggf. eine Assoziativität. Die Assoziativität legt fest, ob zwei nebeneinanderstehende Operatoren gleicher Priorität von links oder rechts ausgewertet werden. Beispiel:
+
+```java
+int age = 17;
+boolean isAdult = age >= 18;
+// Zwei Operatoren: >= und =
+// Operatoren nach Priorität: >=, =
+// (boolean isAdult = (age >= 18))
+
+// 4 Operatoren: =, +, *, -
+// Operatoren nach Priorität : *, +/-, =
+double result = 8 + 3 * 7 - 1
+// Auswertung durch Compiler:
+// (double result = ((8 + (3 * 7)) - 1))
+
+// 3 Operatoren: =, =, +
+// Operatoren nach Priorität: +, =
+// Assoziativität von = ist rechts.
+int x;
+int y;
+x = y = 3 + 1
+// Auswertung durch Compiler:
+// (x = (y = (3 + 1)))
+```
+
 | Operator | Bedeutung                                                | Ergebnisdatentyp      |
 | -------- | -------------------------------------------------------- | --------------------- |
 | ==       | Vergleicht Werte miteinander; Prüft auf Identität        | Boolean               |
@@ -245,4 +270,49 @@ public static void main(String[] args) {
 | ()       | Call-Operator (Methoden aufrufen)                        | variabel              |
 | []       | Index-Operator (Elementzugriff bei Arrays)               | variabel              |
 | .        | Member-Access-Operator (Zugriff auf Felder, Methoden)    | variabel              |
+| =        | Zuweisungsoperator                                       | variabel              |
+| ++       | Inkrement-Operator (Addieren von 1)                      | numerisch             |
+| --       | Dekrement-Operator (Subtrahieren von 1)                  | numerisch             |
 
+# Wiederholungen mit der while-Schleife
+
+Hinweis: Die Anweisung `break` innerhalb der while-Schleife beendet die Schleife vorzeitig. Die Anweisung `continue` hingegen, springt direkt zum Kopf der Schleife, damit die Bedingung neu geprüft wird.
+
+```java
+while (index < args.length) {
+    System.out.printf("Argument %d: %s\n", index + 1, args[index]);
+    index++;
+}
+```
+
+# Wiederholungen mit der do-while-Schleife
+
+Diese Schleife ist fußgesteuert. Sie wird mindestens einmal ausgeführt. Die `break` Anweisung verlässt die Schleife vorzeitig. Die `continue` Anweisung springt direkt zum "Fuß" der Schleife, also zum Bedingungsausdruck.
+
+```java
+do {
+    System.out.printf("Argument %d: %s\n", index + 1, args[index]);
+    index++;
+} while (index < args.length); // <- Semikolon!
+```
+
+# Wiederholungen mit der for-Schleife
+
+Die for-Schleife besteht aus drei Bereichen: Initialisierungsbereich, Bedingungsbereich und "Iterationsbereich".
+
+Der Initialisierungsbereich wird einmal bei Betreten der Schleife ausgeführt. Der Bedingungsbereich wird _vor_ jedem Schleifendurchlauf geprüft. Der Iterationsbereich wird _nach_ jedem Schleifendurchlauf ausgeführt.
+
+Die Anweisung `break` verlässt die Schleife vorzeitig, ohne dass der Iterationsbereich noch einmal ausgeführt wird. Die Anweisung `continue` springt direkt zum Iterationsbereich und danach zum Bedingungsbereich.
+
+Hinweis: Lässt man den Bedingungsbereich leer, ist das gleichbedeutend mit `true`. Die Schleife wird also unendlich oft ausgeführt - eine sogenannte _Endlosschleife_.
+
+```java
+for (int i = 0; i < args.length; i++) {
+    System.out.printf("Argument %d: %s\n", i + 1, args[i]);
+}
+
+System.out.println("\n\n"); // Leerzeilen einfügen.
+for (int a = 0, b = 5 ; b >= 0 ; a++, b--) {
+    System.out.printf("a = %d und b = %d\n", a, b);
+}
+```
