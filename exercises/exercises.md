@@ -193,7 +193,9 @@ Falls sich die Längen von `a` und `b` unterscheiden, sind die verbleibenden Zei
 
 Tipp: Nutze eine herkömmliche for-Schleife.
 
-Zusatzaufgabe: Erweitere das Programm so, dass es beliebig viele Zeichenketten miteinander mischt. Beispiel: `java MyApp "abc" "1234" "xy" "-+:"` gibt `a1x-b2y+c3:4` aus.
+### Zusatzaufgabe
+
+Erweitere das Programm so, dass es beliebig viele Zeichenketten miteinander mischt. Beispiel: `java MyApp "abc" "1234" "xy" "-+:"` gibt `a1x-b2y+c3:4` aus.
 
 ## Zeichenketten auffüllen
 
@@ -254,7 +256,6 @@ Das Program muss auch mit Tageswechseln umgehen können. Beispiel: `java MyApp 2
 Wenn weniger als zwei Argumente angegeben werden, ist der Nutzer über die korrekte Verwendung des Programms zu informieren.
 
 Tipp: Verwende `Integer.parseInt` zum Parsen. Die Uhrzeiten lassen sich zum Beispiel mit der Instanzmethode `split` der Klasse `String` zerlegen.
-
 
 
 
