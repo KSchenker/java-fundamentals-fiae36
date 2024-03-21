@@ -458,7 +458,19 @@ code {
 <h2 id="r%C3%B6mische-ziffer-in-dezimalzahl-umwandeln">Römische Ziffer in Dezimalzahl umwandeln</h2>
 <p>Römische Zahlen bestehen aus den Ziffern <code>i</code> (1), <code>v</code> (5), <code>x</code> (10), <code>l</code> (50), <code>c</code> (100), <code>d</code> (500) und <code>m</code> (1000). Es soll ein Programm geschrieben werden, das eine römische Ziffer in eine Dezimalzahl umwandelt.</p>
 <p>Programmaufruf: <code>java MyApp ziffer</code>. Beispiel: <code>java MyApp v</code> gibt <code>5</code> aus und <code>java MyApp c</code> gibt 100 aus. Der Nutzer darf die Ziffer als Groß- oder Kleinbuchstabe angeben.</p>
+<p>Das Programm soll keine vollständigen Römischen Zahlen wie <code>mcxx</code> in Dezimalzahlen umwandeln. Es geht hier nur um eine Ziffer wie <code>c</code> oder <code>m</code>. Siehe Zusatzaufgabe.</p>
 <p>Vorgabe für Implementierung: Verwende eine moderne switch-Anweisung / switch-Expression.</p>
+<h3 id="zusatzaufgabe-1">Zusatzaufgabe 1</h3>
+<p>Erweitere das Program so, dass vollständige römische Zahlen übersetzt werden. Beispiel: <code>java MyApp mcxx</code> gibt <code>1120</code> aus. Hier zu sind folgende Regeln zu berücksichtigen:</p>
+<ul>
+<li>Steht eine kleinere Ziffer links von einer größeren Ziffer, so ist die kleinere Ziffer von der größeren abzuziehen. Andernfalls werden die Ziffern aufaddiert. Beispiel: <code>iv</code> ist 4 und <code>xc</code> ist 90. <code>cv</code> ist 105.</li>
+<li>Dieselbe Ziffer darf nicht mehr als dreimal nacheinander erscheinen. Beispiel: <code>iii</code> ist korrekt, aber <code>iiii</code> nicht, da die 4 als <code>iv</code> ausgedrückt wird.</li>
+<li>Folgende Ziffern dürfen grundsätzlich nicht wiederholt werden: <code>v</code>, <code>l</code> und <code>d</code>.</li>
+<li>Folgende Subtraktionen sind erlaubt: <code>iv</code> und <code>ix</code>, <code>xl</code> und <code>xc</code>, <code>cd</code> und <code>cm</code>.</li>
+<li>Die größtmögliche Zahl ist 3999, also <code>mmmcmxcix</code> (3000 + 900 + 90 + 9).</li>
+</ul>
+<h3 id="zusatzaufgabe-2">Zusatzaufgabe 2</h3>
+<p>Schreibe ein Programm, das eine Dezimalzahl in eine römische Zahl umwandelt. Es gelten dieselben Regeln wie in Zusatzaufgabe 1.</p>
 <h2 id="schaltjahr-bestimmen">Schaltjahr bestimmen</h2>
 <p>Schreibe ein Programm, das bestimmt, ob ein eingegebenes Jahr ein Schaltjahr ist. Ein Jahr ist ein Schaltjahr, wenn es durch 4 teilbar ist. Falls das Jahr aber auch durch 100 teilbar ist, handelt es sich um kein Schaltjahr. Wenn das Jahr jedoch durch 400 teilbar ist, dann ist es trotzdem ein Schaltjahr.</p>
 <p>Das Programm ist so aufzurufen: <code>java MyApp jahr</code>. Beispiel: <code>java MyApp 2024</code> gibt <code>true</code> aus. <code>java MyApp 1900</code> gibt <code>false</code> aus. <code>java MyApp 1600</code> gibt <code>true</code> aus.</p>

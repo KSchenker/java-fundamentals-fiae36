@@ -14,7 +14,7 @@ public class TemperatureConverter {
             return;
         }
 
-        // Wir haben mindestens Argument. Nun schauen wir, ob es sich um Celsius
+        // Wir haben mindestens ein Argument. Nun schauen wir, ob es sich um Celsius
         // oder Fahrenheit handelt.
         String temperature = args[0].toUpperCase();
         char unit = temperature.charAt(temperature.length() - 1);

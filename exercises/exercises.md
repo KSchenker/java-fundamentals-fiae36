@@ -130,7 +130,23 @@ Römische Zahlen bestehen aus den Ziffern `i` (1), `v` (5), `x` (10), `l` (50), 
 
 Programmaufruf: `java MyApp ziffer`. Beispiel: `java MyApp v` gibt `5` aus und `java MyApp c` gibt 100 aus. Der Nutzer darf die Ziffer als Groß- oder Kleinbuchstabe angeben.
 
+Das Programm soll keine vollständigen Römischen Zahlen wie `mcxx` in Dezimalzahlen umwandeln. Es geht hier nur um eine Ziffer wie `c` oder `m`. Siehe Zusatzaufgabe.
+
 Vorgabe für Implementierung: Verwende eine moderne switch-Anweisung / switch-Expression.
+
+### Zusatzaufgabe 1
+
+Erweitere das Program so, dass vollständige römische Zahlen übersetzt werden. Beispiel: `java MyApp mcxx` gibt `1120` aus. Hier zu sind folgende Regeln zu berücksichtigen:
+
+- Steht eine kleinere Ziffer links von einer größeren Ziffer, so ist die kleinere Ziffer von der größeren abzuziehen. Andernfalls werden die Ziffern aufaddiert. Beispiel: `iv` ist 4 und `xc` ist 90. `cv` ist 105.
+- Dieselbe Ziffer darf nicht mehr als dreimal nacheinander erscheinen. Beispiel: `iii` ist korrekt, aber `iiii` nicht, da die 4 als `iv` ausgedrückt wird. 
+- Folgende Ziffern dürfen grundsätzlich nicht wiederholt werden: `v`, `l` und `d`.
+- Folgende Subtraktionen sind erlaubt: `iv` und `ix`, `xl` und `xc`, `cd` und `cm`.
+- Die größtmögliche Zahl ist 3999, also `mmmcmxcix` (3000 + 900 + 90 + 9).
+
+### Zusatzaufgabe 2
+
+Schreibe ein Programm, das eine Dezimalzahl in eine römische Zahl umwandelt. Es gelten dieselben Regeln wie in Zusatzaufgabe 1.
 
 ## Schaltjahr bestimmen
 
@@ -238,3 +254,7 @@ Das Program muss auch mit Tageswechseln umgehen können. Beispiel: `java MyApp 2
 Wenn weniger als zwei Argumente angegeben werden, ist der Nutzer über die korrekte Verwendung des Programms zu informieren.
 
 Tipp: Verwende `Integer.parseInt` zum Parsen. Die Uhrzeiten lassen sich zum Beispiel mit der Instanzmethode `split` der Klasse `String` zerlegen.
+
+
+
+
