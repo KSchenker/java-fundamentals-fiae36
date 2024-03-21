@@ -405,6 +405,98 @@ switch (ausdruck) {
 }
 ```
 
+# Fallunterscheidung mit dem Conditional Operator ?:
+
+Der Conditional-Operator ist eine "kompakte Form" für eine if-else-Anweisung. Im Unterschied zu `if` kann der Operator jedoch an allen Stellen verwendet werden, wo ein Berechnungsausdruck erwartet wird.
+
+Der Operator besteht aus den beiden Symbolen `?` und `:`. Es sind drei Ausdrücke `A`, `B` und `C` anzugeben. Beispiel:
+
+```java
+A ? B : C
+
+// Ungefähre Analogie zur if-else-Anweisung
+if (A == true) {
+    B ist das Ergebnis des Operators
+} else {
+    C ist das Ergebnis des Operators
+}
+```
+
+Der Operator arbeitet wie folgt: Es wird zuerst geprüft, ob `A` den Wert `true` liefert. Falls dem so ist, wird `B` ausgewertet und dessen Wert als Ergebnis zurückgegeben. Falls jedoch `A` false ist, wird `C` ausgewertet und das Ergebnis von `C` als Gesamtergebnis zurückgegeben.
+
+Es ist zu beachten, dass die Ausdrücke `B` und `C` Werte gleichen Datentyps liefern.
+
+```java
+int a = 3;
+int b = 7;
+int max;
+
+// Maximum mit if-Verzweigung ermitteln.
+if (a > b) {
+    max = a;
+} else {
+    max = b;
+}
+
+// Mit dem Conditional Operator geht es kompakter.
+max = a > b ? a : b;
+
+// Folgende Anweisung kompiliert nicht, da 
+// B und C den Datentyp void haben, also keinen Wert liefern.
+a > b ? System.out.println("a ist Maximum") : System.out.println("b ist Maximum");
+```
+
 # Fehler behandeln mit try-catch-finally
 
-<!-- TODO: Beispiele und Kurzbeschreibung -->
+In Java werden Fehler durch sogenannte Exception-Objekte abgebildet. Das sind herkömmliche Instanzen der Klasse `Exception`. Es gibt zwei Arten von Exceptions: _checked_ und _unchecked_. Eine checked Exception muss vom Entwickler abgefangen werden, eine unchecked Exception jedoch nicht.
+
+Exceptions, die von der Klasse `RuntimeException` erben, sind _unchecked_. Andere Exceptions sind _checked_.
+
+```java
+// Beim Parsing eines Strings nach int, kann es z.B.
+// zur Exception "NumberFormatException" kommen.
+// Dies ist im folgenden Beispiel der Fall.
+int number = Integer.parseInt("i am not a number");
+```
+
+Im Normalfall führt eine Exception zum Programmabbruch. Um das zu vermeiden, muss die Exception durch den Entwickler abgefangen und behandelt werden. Das geht mit der sogenannten `try-catch` Anweisung. Beispiel:
+
+```java
+try {
+    // Anweisungen, die Exceptions
+    // auslösen könnten.
+} catch (ExceptionTyp e) {
+    // Hier kann die Fehlerbehandlung erfolgen.
+    // Mit der Variablen e können Informationen
+    // der Exception abgerufen werden.
+
+    // Jede Exception kann einen Stack-Trace ausgeben.
+    // Das ist der Aufrufstapel / die Aufrufhierarchie, der/die
+    // zur Exception geführt hat.
+    e.printStackTrace();
+    // Jede Exception enthält mindestens einen Fehlertext,
+    // der mit getMessage() abrufbar ist.
+    e.getMessage();
+    // Exceptions können trotz Fehlerbehandlung an den Aufrufer
+    // per throw weitergereicht werden.
+    throw e;
+    // Eine neue Exception auslösen und die ursprüngliche
+    // Exception als Zusatzinfo mitgeben.
+    throw new MyOwnException("message", e);
+} finally {
+   // Hier stehen Anweisungen, die immer auszuführen sind,
+   // egal ob die Anweisungen im try-Block eine
+   // Exception ausgelöst haben oder nicht. 
+
+   // Typischerweise werden hier die Ressourcen freigegeben,
+   // die im try-Block reserviert wurden.
+
+   // Selbst wenn im catch-Block ein return ausgeführt wird,
+   // werden die hier stehenden Anweisungen vorher noch
+   // ausgeführt.
+}
+```
+
+Hinweis: Es dürfen mehrere `catch` Blöcke auf einen `try` Block folgen. Jeder `catch` Block kann eine oder mehrere Exceptions abfangen. Es muss darauf geachtet werden, dass spezifische Exceptions vor allgemeineren Exceptions per `catch` abzufangen sind.
+
+Wenn eine Exception ausgelöst, aber nicht per `try-catch` behandelt wird, dann bricht die Java Runtime Environment die aktuelle Methode ab und reicht das Exception Objekt an den Aufrufer der Methode. Falls auch der Aufrufer die Exception nicht abfängt, wird die Exception abermals an den Aufrufer des Aufrufers weitergereicht usw. Sofern die Exception an die `main` Methode weitergereicht und dort nicht behandelt wird, bricht das Programm abrupt ab. 

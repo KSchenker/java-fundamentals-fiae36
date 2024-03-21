@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>exercises.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+<link rel="stylesheet" href="file:///c%3A/Users/K_Schenker/Desktop/dev/settings/markdown-style.css" type="text/css">
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="teil-a">Teil A</h1>
+<h2 id="welche-fehler-begeht-der-entwickler-hier">Welche Fehler begeht der Entwickler hier?</h2>
+<p>Ein Entwickler legt eine neue Java-Quelltextdatei mit dem Namen <code>MyApp.java</code> an und füllt sie mit folgendem Inhalt:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">App</span> </span>{
+
+}
+</div></code></pre>
+<p>Anschließend will der Entwickler seine Quelltextdatei mit dem Java Compiler <code>javac</code> übersetzen. Dazu gibt er folgendes Kommando ein:</p>
+<pre class="hljs"><code><div>javac MyApp.java
+</div></code></pre>
+<p>Der Compiler meldet einen Fehler. Woran kann das liegen? Welche Änderungen sind am Quelltext vorzunehmen, damit der Compiler ein Kompilat erzeugen kann?</p>
+<p>Der Entwickler hat seinen Fehler im Quelltext behoben. Nun will er sein Programm mit Hilfe des Java Launchers <code>java</code> ausführen. Dazu tippt er folgendes Kommando ein:</p>
+<pre class="hljs"><code><div>java MyApp<span class="hljs-class">.<span class="hljs-keyword">class</span>
+</span></div></code></pre>
+<p>Abermals erhält der Entwickler einen Fehler. Was hat er falsch gemacht? Wie müsste das Kommando stattdessen lauten?</p>
+<p>Der Entwickler bemerkt seinen Fehler und ändert das Kommando entsprechend ab. Doch jetzt erhält er plötzlich einen weiteren Fehler. Angeblich findet der Java Launcher keine <code>main</code> Methode. Was hat es damit auf sich? Wie lässt sich das Problem beheben?</p>
+<h2 id="welche-ergebnisse-liefern-die-folgenden-zuweisungen">Welche Ergebnisse liefern die folgenden Zuweisungen?</h2>
+<p>Teste folgende Anweisungen in der JShell. Überlege dir vorher, welches Ergebnis zu erwarten ist und prüfe erst anschließend, ob deine Vermutung richtig war. Kannst du die Ergebnisse begründen?</p>
+<p>Hinweis: Manche Anweisungen sind syntaktisch falsch. Welche sind es und warum schlagen sie fehl?</p>
+<p>Bemerkung: Die JShell startest du mit dem Befehl <code>jshell</code>. Du kannst die JShell verlassen, indem du den Befehl <code>/exit</code> eintippst und mit Taste Enter bestätigst.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> a = <span class="hljs-number">1703</span>;
+<span class="hljs-keyword">int</span> b = <span class="hljs-number">0703</span>;
+<span class="hljs-keyword">int</span> c = <span class="hljs-number">4</span> / <span class="hljs-number">8</span>;
+<span class="hljs-keyword">int</span> d = <span class="hljs-number">0xCAFE</span>;
+<span class="hljs-keyword">int</span> e = Integer.MIN_VALUE - <span class="hljs-number">1</span>;
+<span class="hljs-keyword">int</span> f = Integer.MAX_VALUE + <span class="hljs-number">1</span>;
+<span class="hljs-keyword">int</span> g = <span class="hljs-number">07709</span>;
+<span class="hljs-keyword">int</span> h = -<span class="hljs-number">2e3</span>;
+<span class="hljs-keyword">byte</span> i = <span class="hljs-number">120</span> + <span class="hljs-number">9</span>;
+<span class="hljs-keyword">byte</span> j = <span class="hljs-number">0b1000_0000</span>;
+<span class="hljs-keyword">byte</span> k = (<span class="hljs-keyword">byte</span>)(<span class="hljs-number">0b1000_0000</span>);
+<span class="hljs-keyword">byte</span> l = (<span class="hljs-keyword">byte</span>)(<span class="hljs-number">0xFF</span>);
+<span class="hljs-keyword">byte</span> m = <span class="hljs-number">1</span>;
+<span class="hljs-keyword">byte</span> n = <span class="hljs-number">2</span>;
+<span class="hljs-keyword">byte</span> o = m + n;
+<span class="hljs-keyword">byte</span> p = (<span class="hljs-keyword">byte</span>)(m + n);
+<span class="hljs-keyword">int</span> q = <span class="hljs-number">4</span> / <span class="hljs-number">3</span>;
+<span class="hljs-keyword">int</span> r = <span class="hljs-number">5</span> / <span class="hljs-number">2.5</span>;
+<span class="hljs-keyword">double</span> s = <span class="hljs-number">1</span> / <span class="hljs-number">2</span>;
+<span class="hljs-keyword">double</span> t = <span class="hljs-number">1.0</span> / <span class="hljs-number">2</span>;
+<span class="hljs-keyword">double</span> u = (<span class="hljs-keyword">double</span>)(<span class="hljs-number">1</span> / <span class="hljs-number">2</span>);
+<span class="hljs-keyword">double</span> v = <span class="hljs-number">1</span> / <span class="hljs-number">3.0</span>;
+<span class="hljs-keyword">float</span> w = <span class="hljs-number">1</span>;
+<span class="hljs-keyword">float</span> x = <span class="hljs-number">0.5</span>;
+<span class="hljs-keyword">float</span> y = <span class="hljs-number">0.5f</span>;
+<span class="hljs-keyword">float</span> z = <span class="hljs-number">3</span> * <span class="hljs-number">5</span> / <span class="hljs-number">2</span> + <span class="hljs-number">2.5f</span>;
+<span class="hljs-keyword">float</span> aa = <span class="hljs-number">1.0</span> + <span class="hljs-number">2.5f</span>;
+<span class="hljs-keyword">float</span> ab = <span class="hljs-number">1.0f</span> + <span class="hljs-number">2.5f</span>;
+<span class="hljs-keyword">double</span> ac = <span class="hljs-number">1.0</span> + <span class="hljs-number">2.5f</span>;
+<span class="hljs-keyword">char</span> ad = <span class="hljs-string">'c'</span>;
+<span class="hljs-keyword">char</span> ae = <span class="hljs-string">"c"</span>;
+<span class="hljs-keyword">char</span> af = <span class="hljs-number">0xff</span>;
+<span class="hljs-keyword">int</span> ag = (<span class="hljs-keyword">int</span>)(<span class="hljs-string">'U'</span>);
+<span class="hljs-keyword">char</span> ah = <span class="hljs-string">'ab'</span>;
+<span class="hljs-keyword">char</span> ai = <span class="hljs-string">'\n'</span>;
+<span class="hljs-keyword">char</span> aj = <span class="hljs-string">'"'</span>;
+<span class="hljs-keyword">char</span> ak = <span class="hljs-string">'\''</span>;
+<span class="hljs-keyword">boolean</span> al = <span class="hljs-keyword">false</span>;
+<span class="hljs-keyword">boolean</span> am = <span class="hljs-number">1</span>;
+<span class="hljs-keyword">boolean</span> an = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">boolean</span> ao = (<span class="hljs-keyword">boolean</span>)(<span class="hljs-number">1</span> + <span class="hljs-number">1</span>);
+<span class="hljs-keyword">boolean</span> ap = <span class="hljs-number">4</span> &gt; <span class="hljs-number">3</span>;
+<span class="hljs-keyword">boolean</span> aq = <span class="hljs-number">4</span> == <span class="hljs-number">4</span>;
+</div></code></pre>
+<h2 id="wie-lauten-die-wrapper-klassen-der-primitiven-datentypen">Wie lauten die Wrapper Klassen der primitiven Datentypen?</h2>
+<p>Finde heraus, wie die Wrapper-Klassen der primitiven Datentypen <code>byte</code>, <code>short</code>, <code>char</code>, <code>int</code>, <code>float</code>, <code>double</code> und <code>boolean</code> heißen. Nutze dazu die JDK API Documentation.</p>
+<h1 id="teil-b">Teil B</h1>
+<p>Beachte folgende Hinweise:</p>
+<ul>
+<li>Falls dir für eine Aufgabe keine Lösung einfällt, widme dich einfach der nächsten Aufgabe. Vielleicht kommt dir später noch eine Idee.</li>
+<li>Ich rate dir dringend davon ab, eine KI einzusetzen, um diese Aufgaben zu lösen. Der Lerneffekt würde dadurch enorm sinken.</li>
+<li>Sofern nicht anders vorgegeben, ist pro Aufgabenstellung je ein Programm zu schreiben, das seine Eingabedaten über Kommandozeilenargumente erhält.</li>
+<li>Denke daran, dass Kommandozeilenargumente immer als Zeichenketten an das Java Programm übergeben werden. Argumente mit Leerzeichen sind auf der Kommandozeile in einfache oder doppelte Hochkommas zu setzen. Beispiel: <code>java MyApp argument1 argument2 &quot;argument with spaces&quot;</code>.</li>
+<li>In den Aufgabenstellungen heißt das Programm immer <code>MyApp</code>, aber du bist angehalten, passendere Namen zu wählen.</li>
+<li>Die in den Aufgabenstellungen genannten Tipps dienen nur als Denkanstoß und sind nicht verpflichtend. Meistens gibt es viele Lösungsmöglichkeiten für ein Problem.</li>
+<li>Wenn nicht anders vorgegeben, darfst du davon ausgehen, dass der Nutzer seine Argumente im korrekten Format angibt.</li>
+<li>Braucht ein Programm mindestens ein Argument, aber hat der Nutzer keines angegeben, soll das Programm den Nutzer über den korrekten Aufruf informieren.</li>
+</ul>
+<h2 id="temperaturen-in-grad-celsius-und-fahrenheit-umwandeln">Temperaturen in Grad Celsius und Fahrenheit umwandeln</h2>
+<p>Es ist ein Programm zu schreiben, das eine Temperatur in Grad Celsius (C) in Grad Fahrenheit (F) umrechnet. Das Programm soll außerdem in der Lage sein, eine Temperatur von Grad Fahrenheit (F) in Grad Celsius (C) umzuwandeln.</p>
+<p>Programmaufruf: <code>java TemperatureConverter temperatur</code>. Beispiel: <code>java TemperatureConverter 20.5C</code> gibt <code>68.9F</code> aus. Beispiel 2: <code>java TemperatureConverter 68.9F</code> gibt <code>20.5C</code> aus.</p>
+<h2 id="auf-teilbarkeit-pr%C3%BCfen">Auf Teilbarkeit prüfen</h2>
+<p>Schreibe ein Programm, das prüft, ob eine ganze Zahl <code>z</code> durch eine andere ganze Zahl <code>t</code> teilbar ist. Es darf davon ausgegangen werden, dass der Nutzer nur positive Zahlen angibt.</p>
+<p>Programmaufruf: <code>java MyApp z t</code>. Beispiel: <code>java MyApp 100 25</code> gibt <code>true</code> aus und <code>java MyApp 100 30</code> gibt <code>false</code> aus.</p>
+<p>Im Anschluss ist das Program so zu erweitern, dass es eine Gleichung mit Teiler und ggf. auch mit Restwert (Modulo) ausgibt. Beispiel: <code>100 = 4 * 25</code> ist für <code>z = 100</code> und <code>t = 25</code> auszugeben. Bei <code>z = 100</code> und <code>t = 30</code> erscheint hingegen <code>100 = 3 * 30 + 10</code>.</p>
+<p>Tipp: Verwende den Modulo-Operator <code>%</code> und die Integer-Division <code>/</code>.</p>
+<h2 id="zeichenkette-umkehren">Zeichenkette umkehren</h2>
+<p>Eine Zeichenkette <code>s</code> ist in umgekehrter Reihenfolge auszugeben.</p>
+<p>Das Programm ist wie folgt aufzurufen: <code>java MyApp s</code>. Beispiel: <code>java MyApp &quot;Hello World&quot;</code> gibt <code>dlroW olleH</code> aus.</p>
+<p>Tipp: Verwende eine herkömmliche for-Schleife.</p>
+<h2 id="r%C3%B6mische-ziffer-in-dezimalzahl-umwandeln">Römische Ziffer in Dezimalzahl umwandeln</h2>
+<p>Römische Zahlen bestehen aus den Ziffern <code>i</code> (1), <code>v</code> (5), <code>x</code> (10), <code>l</code> (50), <code>c</code> (100), <code>d</code> (500) und <code>m</code> (1000). Es soll ein Programm geschrieben werden, das eine römische Ziffer in eine Dezimalzahl umwandelt.</p>
+<p>Programmaufruf: <code>java MyApp ziffer</code>. Beispiel: <code>java MyApp v</code> gibt <code>5</code> aus und <code>java MyApp c</code> gibt 100 aus. Der Nutzer darf die Ziffer als Groß- oder Kleinbuchstabe angeben.</p>
+<p>Vorgabe für Implementierung: Verwende eine moderne switch-Anweisung / switch-Expression.</p>
+<h2 id="schaltjahr-bestimmen">Schaltjahr bestimmen</h2>
+<p>Schreibe ein Programm, das bestimmt, ob ein eingegebenes Jahr ein Schaltjahr ist. Ein Jahr ist ein Schaltjahr, wenn es durch 4 teilbar ist. Falls das Jahr aber auch durch 100 teilbar ist, handelt es sich um kein Schaltjahr. Wenn das Jahr jedoch durch 400 teilbar ist, dann ist es trotzdem ein Schaltjahr.</p>
+<p>Das Programm ist so aufzurufen: <code>java MyApp jahr</code>. Beispiel: <code>java MyApp 2024</code> gibt <code>true</code> aus. <code>java MyApp 1900</code> gibt <code>false</code> aus. <code>java MyApp 1600</code> gibt <code>true</code> aus.</p>
+<p>Implementiere das Programm in zwei Varianten:</p>
+<ul>
+<li>Verwende <code>if</code> in Kombination mit <code>else if</code> und <code>else</code>.</li>
+<li>Verwende nur <code>if</code> und verknüpfe die Bedingungen mit <code>&amp;&amp;</code> und <code>̍||</code>.</li>
+</ul>
+<p>Tipp: Benutze den Modulo-Operator <code>%</code> um die Teilbarkeit zu prüfen.</p>
+<h2 id="schaltjahre-in-einem-bereich-bestimmen">Schaltjahre in einem Bereich bestimmen</h2>
+<p>Es ist ein Programm zu schreiben, das alle Schaltjahre ausgibt, die sich in einem vorgegebenen Intervall befinden. Das Intervall wird durch Angabe eines Start- und eines Endjahres definiert.</p>
+<p>Programmaufruf: <code>java MyApp start ende</code>. Beispiel: <code>java MyApp 1896 1915</code> gibt die Jahre 1896, 1904, 1908 und 1912 aus.</p>
+<h2 id="tage-eines-monats-bestimmen">Tage eines Monats bestimmen</h2>
+<p>Es sind die Tage eines Monats auszugeben. Schaltjahre sind dabei zu berücksichtigen. Der Monat ist als Zahl anzugeben.</p>
+<p>Programmaufruf: <code>java MyApp monat jahr</code>. Beispiel: <code>java MyApp 2 2024</code> gibt 29 aus und <code>java MyApp 2 2025</code> gibt 28 aus.</p>
+<p>Vorgabe für Implementierung: Verwende ein modernes switch-Statement / switch-Expression.</p>
+<h2 id="palindrom-test">Palindrom-Test</h2>
+<p>Es ist zu prüfen, ob eine Zeichenkette <code>s</code> ein Palindrom ist. Palindrome sind Wörter, die sowohl vorwärts als auch rückwärts gelesen dasselbe Wort ergeben. Bildlich gesprochen handelt es sich um Wörter, die gespiegelt sind. Beispiele: otto, anna, hannah, rentner, lagerregal.</p>
+<p>Das Programm ist folgendermaßen aufzurufen: <code>java MyApp s</code>. Beispiel: <code>java MyApp &quot;rentner&quot;</code> gibt <code>true</code> und <code>java MyApp &quot;java&quot;</code> den Text <code>false</code> aus.</p>
+<p>Vorgabe zur Implementierung: Verwende eine for-Schleife mit zwei Laufvariablen.</p>
+<h2 id="zeichenketten-vermischen">Zeichenketten vermischen</h2>
+<p>Zwei Zeichenketten <code>a</code> und <code>b</code> sollen nach dem Reißverschluss-Verfahren gemischt werden.</p>
+<p>Das Programm ist wie folgt aufzurufen: <code>java MyApp a b</code>. Beispiel: <code>java MyApp &quot;abc&quot; &quot;123&quot;</code> gibt <code>a1b2c3</code> aus.</p>
+<p>Falls sich die Längen von <code>a</code> und <code>b</code> unterscheiden, sind die verbleibenden Zeichen der längeren Zeichenkette am Ende auszugeben. Beispiel: <code>java MyApp &quot;abcde&quot; &quot;123&quot;</code> gibt <code>a1b2c3de</code> aus.</p>
+<p>Tipp: Nutze eine herkömmliche for-Schleife.</p>
+<p>Zusatzaufgabe: Erweitere das Programm so, dass es beliebig viele Zeichenketten miteinander mischt. Beispiel: <code>java MyApp &quot;abc&quot; &quot;1234&quot; &quot;xy&quot; &quot;-+:&quot;</code> gibt <code>a1x-b2y+c3:4</code> aus.</p>
+<h2 id="zeichenketten-auff%C3%BCllen">Zeichenketten auffüllen</h2>
+<p>Eine Zeichenkette <code>s</code>, die weniger als <code>n</code> Zeichen enthält, soll mit einem Füllzeichen <code>f</code> bis zur Länge <code>n</code> von rechts aufgefüllt werden.</p>
+<p>Das Programm ist wie folgt aufzurufen: <code>java MyApp s n f</code>. Beispiel: <code>java MyApp &quot;a b&quot; 5 X</code> gibt <code>a bXX</code> aus.</p>
+<p>Falls <code>s</code> schon lang genug ist, soll das Programm <code>s</code> unverändert ausgeben. Beispiel: <code>java MyApp &quot;abcde&quot; 3 X</code> gibt <code>abcde</code> aus.</p>
+<p>Im Anschluss ist das obige Programm in zwei weiteren Varianten zu implementieren:</p>
+<ul>
+<li>Die Zeichenkette ist von links aufzufüllen.</li>
+<li>Die Zeichenkette ist beidseitig aufzufüllen. Beispiel: <code>java &quot;abc&quot; 7 X</code> gibt <code>XXabcXX</code> aus und <code>java MyApp &quot;abc&quot; 6 X</code> gibt <code>XXabcX</code> aus.</li>
+</ul>
+<p>Tipp: Verwende <code>Integer.parseInt</code> zum Konvertieren von <code>String</code> nach <code>int</code>. Verwende den <code>+</code> Operator zum Verketten von Strings.</p>
+<h2 id="zeichenketten-abk%C3%BCrzen">Zeichenketten abkürzen</h2>
+<p>Eine Zeichenkette <code>s</code>, die mehr als <code>n</code> Zeichen enthält, soll durch eine Ellipsis <code>...</code> (3 Punkte) so abgekürzt werden, dass sie genau die Länge <code>n</code> hat. Hat <code>s</code> höchstens <code>n</code> Zeichen, so ist <code>s</code> unverändert auszugeben.</p>
+<p>Das Programm ist wie folgt aufzurufen: <code>java MyApp s n</code>. Beispiel: <code>java MyApp &quot;Ein langer Text&quot; 10</code> gibt <code>Ein lan...</code> aus.</p>
+<p>Wenn <code>n &lt;= 3</code> gilt und die Länge von s größer als <code>n</code> ist, sind <code>n</code> Punkte (<code>.</code>) auszugeben. Beispiel: <code>java MyApp &quot;abcde&quot; 3</code> gibt <code>...</code> aus und <code>java MyApp &quot;abcde&quot; 2</code> gibt <code>..</code> aus.</p>
+<p>Im Anschluss ist das obige Programm in zwei weiteren Varianten zu implementieren:</p>
+<ul>
+<li>Die Zeichenkette ist am Beginn zu kürzen. Beispiel: <code>java MyApp &quot;Ein langer Text&quot; 10</code> gibt <code>...er Text</code> aus.</li>
+<li>Die Zeichenkette ist in der Mitte zu kürzen. Beispiel: <code>java MyApp &quot;Ein langer Text&quot; 10</code> gibt <code>Ein...Text</code> aus.</li>
+</ul>
+<p>Tipp: Verwende die Instanzmethode <code>substring</code> der Klasse <code>String</code> und den <code>+</code> Operator zum Verketten. Du kannst auch einen <code>StringBuilder</code> verwenden.</p>
+<h2 id="umwandlung-von-tagen-stunden-minuten-und-sekunden-in-sekunden">Umwandlung von Tagen, Stunden, Minuten und Sekunden in Sekunden</h2>
+<p>Eine Dauer, die in Form von Tagen, Stunden, Minuten und Sekunden anzugeben ist, soll in Sekunden umgerechnet werden. Beispiel: 1 Tag, 2 Stunden, 5 Minuten und 20 Sekunden ergeben insgesamt 93920 Sekunden.</p>
+<p>Das Programm ist wie folgt aufzurufen: <code>java MyApp 1d 2h 5m 20s</code>. Die Argumente dürfen vom Nutzer in <em>beliebiger</em> Reihenfolge angegeben werden! Außerdem soll es möglich sein, Argumente wegzulassen. Beispiel: <code>java MyApp 20s 1d</code>. Das Programm erkennt anhand der Suffixe <code>d</code> (Tage), <code>h</code> (Stunden), <code>m</code> (Minuten) und <code>s</code> (Sekunden), um welche Zeiteinheiten es sich handelt. Es darf davon ausgegangen werden, dass der Nutzer Argumente im korrekten Format angibt.</p>
+<p>Taucht eine Zeiteinheit mehrfach auf, sind die Einheiten zu addieren. Beispiel: <code>java MyApp 20s 1d 60s</code> ist gleichbedeutend mit <code>java MyApp 80s 1d</code>. Steht vor der Zeiteinheit ein <code>-</code> (Minus), so sind die Zeiteinheiten zu subtrahieren. Beispiel: <code>java MyApp 1d 2h 5m 20s -2m</code> ergibt 93800 Sekunden.</p>
+<p>Erhält das Programm gar keine Argumente, ist ein Text auszugeben, der den Nutzer darüber informiert, wie man das Programm korrekt aufruft - eine Synopsis.</p>
+<p>Tipp: Du kannst hier Methoden der Klasse <code>String</code> verwenden, z.B. <code>endsWith</code>. Für die Umwandlung von Strings in Integer, steht dir die statische Methode <code>parseInt</code> der Klasse <code>Integer</code> zur Verfügung.</p>
+<h2 id="umwandlung-von-sekunden-in-tage-stunden-minuten-und-sekunden">Umwandlung von Sekunden in Tage, Stunden, Minuten und Sekunden</h2>
+<p>Eine ganze Zahl soll in Tage, Stunden, Minuten und Sekunden zerlegt werden. Beispiel: 93920 Sekunden entsprechen 1 Tag, 2 Stunden, 5 Minuten und 20 Sekunden.</p>
+<p>Tipp: Verwende den Modulo-Operator <code>%</code> und die Integer-Division <code>/</code>.</p>
+<h2 id="arbeitsdauer-aus-komm--und-gehzeit-ermitteln">Arbeitsdauer aus Komm- und Gehzeit ermitteln</h2>
+<p>Anhand zweier Uhrzeiten im Format <code>hh:mm</code> soll die Arbeitszeit in Stunden und Minuten berechnet werden.</p>
+<p>Das Programm ist wie folgt aufzurufen: <code>java MyApp hh:mm hh:mm</code>. Das erste Argument ist die Komm- und das zweite Argument die Gehzeit. Beispiel: <code>java MyApp 08:45 12:30</code> gibt <code>3h 45m</code> aus. Es darf davon ausgegangen werden, dass der Nutzer Argumente im korrekten Format angibt.</p>
+<p>Das Program muss auch mit Tageswechseln umgehen können. Beispiel: <code>java MyApp 21:20 02:03</code> gibt <code>4h 43m</code> aus.</p>
+<p>Wenn weniger als zwei Argumente angegeben werden, ist der Nutzer über die korrekte Verwendung des Programms zu informieren.</p>
+<p>Tipp: Verwende <code>Integer.parseInt</code> zum Parsen. Die Uhrzeiten lassen sich zum Beispiel mit der Instanzmethode <code>split</code> der Klasse <code>String</code> zerlegen.</p>
+
+</body>
+</html>
