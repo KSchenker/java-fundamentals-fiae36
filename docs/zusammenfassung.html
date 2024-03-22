@@ -917,8 +917,73 @@ System.out.printf(<span class="hljs-string">"Zweite eingelesene Zahl ist %d\n"</
     System.out.printf(<span class="hljs-string">"Weitere Daten: %s\n"</span>, s.next());
 }
 </div></code></pre>
+<p>Wenn man den Nutzer auf dem Terminal dazu auffordert, etwas einzugeben, dann kann es unter Umständen passieren, dass er mehrere <em>Tokens</em> (durch Delimiter getrennte Zeichenfolgen) eintippt. Die <code>next</code> Methoden des Scanners würden dann nicht an jeder Stelle blockieren, sondern automatisch das nächste Token einlesen. Um das zu vermeiden, kann man zum Beispiel <code>nextLine</code> mit explizitem Parsing verwenden. Beispiel:</p>
+<pre class="hljs"><code><div>String input;
+System.out.print(<span class="hljs-string">"Gib eine Zahl ein: "</span>);
+input = scanner.nextLine();
+<span class="hljs-keyword">int</span> firstNumber = Integer.parseInt(input);
+System.out.print(<span class="hljs-string">"Gib eine zweite Zahl ein: "</span>);
+<span class="hljs-comment">// Gesamte Zeile einlesen</span>
+input = scanner.nextLine();
+<span class="hljs-comment">// Manuell in int parsen.</span>
+<span class="hljs-keyword">int</span> secondNumber = Integer.parseInt(input);
+<span class="hljs-keyword">int</span> sum = firstNumber + secondNumber;
+System.out.printf(<span class="hljs-string">"%d + %d = %d!\n"</span>, firstNumber, secondNumber, sum);
+</div></code></pre>
+<p><strong>Achtung:</strong> Der Scanner berücksichtigt die aktuell eingestellten regionalen Einstellungen (<em>Locale</em>). Die herkömmlichen <code>parse</code> Methoden (wie z.B. <code>Double.parseDouble</code>) berücksichtigen keine regionalen Einstellungen! Die Locale kann für den Scanner konfiguriert werden:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">var</span> scanner = <span class="hljs-keyword">new</span> Scanner(System.in);
+scanner.useLocale(Locale.GERMANY);
+<span class="hljs-comment">// Scanner berücksichtigt die Locale. Hier wird</span>
+<span class="hljs-comment">// ein Komma als Dezimaltrenner erwartet, da GERMANY</span>
+<span class="hljs-comment">// eingestellt ist.</span>
+<span class="hljs-keyword">double</span> value = scanner.nextDouble();
+<span class="hljs-comment">// parseDouble berücksichtigt keine Locale. Hier ist der</span>
+<span class="hljs-comment">// Dezimaltrenner immer ein Punkt (.)</span>
+value = Double.parseDouble(<span class="hljs-string">"123.456"</span>); 
+<span class="hljs-comment">// printf verwendet die per Default eingestellte Locale.</span>
+<span class="hljs-comment">// In Deutschland würde die Gleitkommazahl mit Dezimaltrenner ,</span>
+<span class="hljs-comment">// ausgegeben werden. Um die Locale explizit festzulegen,</span>
+<span class="hljs-comment">// kann man als erstes Argument die Locale vorgeben. Hier US.</span>
+System.out.printf(Locale.US, <span class="hljs-string">"%f"</span>, <span class="hljs-number">2.56</span>); <span class="hljs-comment">// 2.56</span>
+System.out.printf(Locale.GERMANY, <span class="hljs-string">"%f"</span>, <span class="hljs-number">2.56</span>); <span class="hljs-comment">// 2,56</span>
+</div></code></pre>
 <p>Funktionsweise des Scanners als Diagramm:</p>
 <p><img src="../diagrams/how-a-scanner-works.svg" alt=""></p>
+<h1 id="dateien-einlesen">Dateien einlesen</h1>
+<p>In den Packages <code>java.io</code>, <code>java.nio.file</code> und <code>java.nio</code> befinden sich zahlreiche Klassen, um Dateien und Verzeichnisse zu verwalten.</p>
+<p>Um den Inhalt einer Textdatei einzulesen, kann man die Klasse <code>Files</code> verwenden in Kombination mit der Klasse <code>Path</code> und <code>StandardCharsets</code>. Beispiel:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> java.nio.file.Files;
+<span class="hljs-keyword">import</span> java.nio.file.Path;
+<span class="hljs-keyword">import</span> java.nio.charset.StandardCharsets;
+
+<span class="hljs-comment">// Erstelle den relativen Pfad ".\data\contacts.txt"</span>
+<span class="hljs-comment">// Hinweis: Es wird nicht geprüft, ob dieser Pfad</span>
+<span class="hljs-comment">// tatsächlich im Dateisystem existiert!</span>
+Path pathToFile = Path.of(<span class="hljs-string">"data"</span>, <span class="hljs-string">"contacts.txt"</span>);
+<span class="hljs-comment">// Lies gesamten Inhalt der Datei und gehe davon aus,</span>
+<span class="hljs-comment">// dass die Zeichenkodierung UTF-8 für den Inhalt</span>
+<span class="hljs-comment">// verwendet wurde.</span>
+String fileContent = Files.readString(pathToFile, StandardCharsets.UTF_8);
+</div></code></pre>
+<p>Methoden, die auf Dateien zugreifen, können in den meisten Fällen <code>IOExceptions</code> auslösen. Solche Exceptions sind <em>checked</em> und müssen deshalb abgefangen werden. Beispiel:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> java.nio.file.Files;
+<span class="hljs-keyword">import</span> java.nio.file.Path;
+<span class="hljs-keyword">import</span> java.nio.charset.StandardCharsets;
+<span class="hljs-keyword">import</span> java.io.IOException;
+<span class="hljs-keyword">import</span> java.nio.file.AccessDeniedException;
+<span class="hljs-keyword">import</span> java.nio.file.NoSuchFileException;
+
+<span class="hljs-keyword">try</span> {
+    Path pathToFile = Path.of(<span class="hljs-string">"data"</span>, <span class="hljs-string">"contacts.txt"</span>);
+    String logContent = Files.readString(pathToFile, StandardCharsets.UTF_8);
+} <span class="hljs-keyword">catch</span> (AccessDeniedException e) {
+    System.err.printf(<span class="hljs-string">"Kein Lesezugriff.\n"</span>);
+} <span class="hljs-keyword">catch</span> (NoSuchFileException e) {
+    System.err.printf(<span class="hljs-string">"Datei existiert nicht.\n"</span>);
+} <span class="hljs-keyword">catch</span> (IOException ioe) {
+    System.err.printf(<span class="hljs-string">"Irgendein anderer Input/Output Fehler\n"</span>);
+}
+</div></code></pre>
 
 </body>
 </html>

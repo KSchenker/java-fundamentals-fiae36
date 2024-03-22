@@ -563,7 +563,85 @@ if (s.hasNext()) {
 }
 ```
 
+Wenn man den Nutzer auf dem Terminal dazu auffordert, etwas einzugeben, dann kann es unter Umständen passieren, dass er mehrere _Tokens_ (durch Delimiter getrennte Zeichenfolgen) eintippt. Die `next` Methoden des Scanners würden dann nicht an jeder Stelle blockieren, sondern automatisch das nächste Token einlesen. Um das zu vermeiden, kann man zum Beispiel `nextLine` mit explizitem Parsing verwenden. Beispiel:
+
+```java
+String input;
+System.out.print("Gib eine Zahl ein: ");
+input = scanner.nextLine();
+int firstNumber = Integer.parseInt(input);
+System.out.print("Gib eine zweite Zahl ein: ");
+// Gesamte Zeile einlesen
+input = scanner.nextLine();
+// Manuell in int parsen.
+int secondNumber = Integer.parseInt(input);
+int sum = firstNumber + secondNumber;
+System.out.printf("%d + %d = %d!\n", firstNumber, secondNumber, sum);
+```
+
+**Achtung:** Der Scanner berücksichtigt die aktuell eingestellten regionalen Einstellungen (_Locale_). Die herkömmlichen `parse` Methoden (wie z.B. `Double.parseDouble`) berücksichtigen keine regionalen Einstellungen! Die Locale kann für den Scanner konfiguriert werden:
+
+```java
+var scanner = new Scanner(System.in);
+scanner.useLocale(Locale.GERMANY);
+// Scanner berücksichtigt die Locale. Hier wird
+// ein Komma als Dezimaltrenner erwartet, da GERMANY
+// eingestellt ist.
+double value = scanner.nextDouble();
+// parseDouble berücksichtigt keine Locale. Hier ist der
+// Dezimaltrenner immer ein Punkt (.)
+value = Double.parseDouble("123.456"); 
+// printf verwendet die per Default eingestellte Locale.
+// In Deutschland würde die Gleitkommazahl mit Dezimaltrenner ,
+// ausgegeben werden. Um die Locale explizit festzulegen,
+// kann man als erstes Argument die Locale vorgeben. Hier US.
+System.out.printf(Locale.US, "%f", 2.56); // 2.56
+System.out.printf(Locale.GERMANY, "%f", 2.56); // 2,56
+```
+
 Funktionsweise des Scanners als Diagramm:
 
 ![](../diagrams/how-a-scanner-works.svg)
 
+# Dateien einlesen
+
+In den Packages `java.io`, `java.nio.file` und `java.nio` befinden sich zahlreiche Klassen, um Dateien und Verzeichnisse zu verwalten.
+
+Um den Inhalt einer Textdatei einzulesen, kann man die Klasse `Files` verwenden in Kombination mit der Klasse `Path` und `StandardCharsets`. Beispiel:
+
+```java
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.charset.StandardCharsets;
+
+// Erstelle den relativen Pfad ".\data\contacts.txt"
+// Hinweis: Es wird nicht geprüft, ob dieser Pfad
+// tatsächlich im Dateisystem existiert!
+Path pathToFile = Path.of("data", "contacts.txt");
+// Lies gesamten Inhalt der Datei und gehe davon aus,
+// dass die Zeichenkodierung UTF-8 für den Inhalt
+// verwendet wurde.
+String fileContent = Files.readString(pathToFile, StandardCharsets.UTF_8);
+```
+
+Methoden, die auf Dateien zugreifen, können in den meisten Fällen `IOExceptions` auslösen. Solche Exceptions sind _checked_ und müssen deshalb abgefangen werden. Beispiel:
+
+```java
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.charset.StandardCharsets;
+import java.io.IOException;
+import java.nio.file.AccessDeniedException;
+import java.nio.file.NoSuchFileException;
+
+try {
+    Path pathToFile = Path.of("data", "contacts.txt");
+    String logContent = Files.readString(pathToFile, StandardCharsets.UTF_8);
+} catch (AccessDeniedException e) {
+    System.err.printf("Kein Lesezugriff.\n");
+} catch (NoSuchFileException e) {
+    System.err.printf("Datei existiert nicht.\n");
+} catch (IOException ioe) {
+    System.err.printf("Irgendein anderer Input/Output Fehler\n");
+}
+```
