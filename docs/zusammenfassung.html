@@ -798,7 +798,127 @@ System.out.println(<span class="hljs-string">"\n\n"</span>); <span class="hljs-c
     <span class="hljs-keyword">default</span> -&gt; wert;
 }
 </div></code></pre>
+<h1 id="fallunterscheidung-mit-dem-conditional-operator">Fallunterscheidung mit dem Conditional Operator ?:</h1>
+<p>Der Conditional-Operator ist eine &quot;kompakte Form&quot; für eine if-else-Anweisung. Im Unterschied zu <code>if</code> kann der Operator jedoch an allen Stellen verwendet werden, wo ein Berechnungsausdruck erwartet wird.</p>
+<p>Der Operator besteht aus den beiden Symbolen <code>?</code> und <code>:</code>. Es sind drei Ausdrücke <code>A</code>, <code>B</code> und <code>C</code> anzugeben. Beispiel:</p>
+<pre class="hljs"><code><div>A ? B : C
+
+<span class="hljs-comment">// Ungefähre Analogie zur if-else-Anweisung</span>
+<span class="hljs-keyword">if</span> (A == <span class="hljs-keyword">true</span>) {
+    B ist das Ergebnis des Operators
+} <span class="hljs-keyword">else</span> {
+    C ist das Ergebnis des Operators
+}
+</div></code></pre>
+<p>Der Operator arbeitet wie folgt: Es wird zuerst geprüft, ob <code>A</code> den Wert <code>true</code> liefert. Falls dem so ist, wird <code>B</code> ausgewertet und dessen Wert als Ergebnis zurückgegeben. Falls jedoch <code>A</code> false ist, wird <code>C</code> ausgewertet und das Ergebnis von <code>C</code> als Gesamtergebnis zurückgegeben.</p>
+<p>Es ist zu beachten, dass die Ausdrücke <code>B</code> und <code>C</code> Werte gleichen Datentyps liefern.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> a = <span class="hljs-number">3</span>;
+<span class="hljs-keyword">int</span> b = <span class="hljs-number">7</span>;
+<span class="hljs-keyword">int</span> max;
+
+<span class="hljs-comment">// Maximum mit if-Verzweigung ermitteln.</span>
+<span class="hljs-keyword">if</span> (a &gt; b) {
+    max = a;
+} <span class="hljs-keyword">else</span> {
+    max = b;
+}
+
+<span class="hljs-comment">// Mit dem Conditional Operator geht es kompakter.</span>
+max = a &gt; b ? a : b;
+
+<span class="hljs-comment">// Folgende Anweisung kompiliert nicht, da </span>
+<span class="hljs-comment">// B und C den Datentyp void haben, also keinen Wert liefern.</span>
+a &gt; b ? System.out.println(<span class="hljs-string">"a ist Maximum"</span>) : System.out.println(<span class="hljs-string">"b ist Maximum"</span>);
+</div></code></pre>
 <h1 id="fehler-behandeln-mit-try-catch-finally">Fehler behandeln mit try-catch-finally</h1>
-<!-- TODO: Beispiele und Kurzbeschreibung -->
+<p>In Java werden Fehler durch sogenannte Exception-Objekte abgebildet. Das sind herkömmliche Instanzen der Klasse <code>Exception</code>. Es gibt zwei Arten von Exceptions: <em>checked</em> und <em>unchecked</em>. Eine checked Exception muss vom Entwickler abgefangen werden, eine unchecked Exception jedoch nicht.</p>
+<p>Exceptions, die von der Klasse <code>RuntimeException</code> erben, sind <em>unchecked</em>. Andere Exceptions sind <em>checked</em>.</p>
+<pre class="hljs"><code><div><span class="hljs-comment">// Beim Parsing eines Strings nach int, kann es z.B.</span>
+<span class="hljs-comment">// zur Exception "NumberFormatException" kommen.</span>
+<span class="hljs-comment">// Dies ist im folgenden Beispiel der Fall.</span>
+<span class="hljs-keyword">int</span> number = Integer.parseInt(<span class="hljs-string">"i am not a number"</span>);
+</div></code></pre>
+<p>Im Normalfall führt eine Exception zum Programmabbruch. Um das zu vermeiden, muss die Exception durch den Entwickler abgefangen und behandelt werden. Das geht mit der sogenannten <code>try-catch</code> Anweisung. Beispiel:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">try</span> {
+    <span class="hljs-comment">// Anweisungen, die Exceptions</span>
+    <span class="hljs-comment">// auslösen könnten.</span>
+} <span class="hljs-keyword">catch</span> (ExceptionTyp e) {
+    <span class="hljs-comment">// Hier kann die Fehlerbehandlung erfolgen.</span>
+    <span class="hljs-comment">// Mit der Variablen e können Informationen</span>
+    <span class="hljs-comment">// der Exception abgerufen werden.</span>
+
+    <span class="hljs-comment">// Jede Exception kann einen Stack-Trace ausgeben.</span>
+    <span class="hljs-comment">// Das ist der Aufrufstapel / die Aufrufhierarchie, der/die</span>
+    <span class="hljs-comment">// zur Exception geführt hat.</span>
+    e.printStackTrace();
+    <span class="hljs-comment">// Jede Exception enthält mindestens einen Fehlertext,</span>
+    <span class="hljs-comment">// der mit getMessage() abrufbar ist.</span>
+    e.getMessage();
+    <span class="hljs-comment">// Exceptions können trotz Fehlerbehandlung an den Aufrufer</span>
+    <span class="hljs-comment">// per throw weitergereicht werden.</span>
+    <span class="hljs-keyword">throw</span> e;
+    <span class="hljs-comment">// Eine neue Exception auslösen und die ursprüngliche</span>
+    <span class="hljs-comment">// Exception als Zusatzinfo mitgeben.</span>
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> MyOwnException(<span class="hljs-string">"message"</span>, e);
+} <span class="hljs-keyword">finally</span> {
+   <span class="hljs-comment">// Hier stehen Anweisungen, die immer auszuführen sind,</span>
+   <span class="hljs-comment">// egal ob die Anweisungen im try-Block eine</span>
+   <span class="hljs-comment">// Exception ausgelöst haben oder nicht. </span>
+
+   <span class="hljs-comment">// Typischerweise werden hier die Ressourcen freigegeben,</span>
+   <span class="hljs-comment">// die im try-Block reserviert wurden.</span>
+
+   <span class="hljs-comment">// Selbst wenn im catch-Block ein return ausgeführt wird,</span>
+   <span class="hljs-comment">// werden die hier stehenden Anweisungen vorher noch</span>
+   <span class="hljs-comment">// ausgeführt.</span>
+}
+</div></code></pre>
+<p>Hinweis: Es dürfen mehrere <code>catch</code> Blöcke auf einen <code>try</code> Block folgen. Jeder <code>catch</code> Block kann eine oder mehrere Exceptions abfangen. Es muss darauf geachtet werden, dass spezifische Exceptions vor allgemeineren Exceptions per <code>catch</code> abzufangen sind.</p>
+<p>Wenn eine Exception ausgelöst, aber nicht per <code>try-catch</code> behandelt wird, dann bricht die Java Runtime Environment die aktuelle Methode ab und reicht das Exception Objekt an den Aufrufer der Methode. Falls auch der Aufrufer die Exception nicht abfängt, wird die Exception abermals an den Aufrufer des Aufrufers weitergereicht usw. Sofern die Exception an die <code>main</code> Methode weitergereicht und dort nicht behandelt wird, bricht das Programm abrupt ab.</p>
+<h1 id="den-compiler-den-variablendatentyp-ermitteln-lassen">Den Compiler den Variablendatentyp ermitteln lassen</h1>
+<p>In wenigen Situationen ist es hilfreich, den Compiler den Datentyp einer Variablen selbst ermitteln zu lassen. Das ist zum Beispiel bei der Objektkonstruktion der Fall. Dort muss man häufig den Datentyp zweimal angeben: nach dem <code>new</code> Operator und vor der zu erstellenden Variable. Um diese Redundanz zu vermeiden, bietet Java das Schlüsselwort <code>var</code> an. Beispiel:</p>
+<pre class="hljs"><code><div><span class="hljs-comment">// Ohne Verwendung von var:</span>
+HashMap&lt;Integer, String&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;Integer, String&gt;();
+
+<span class="hljs-comment">// Mit Verwendung von var.</span>
+<span class="hljs-comment">// Compiler setzt den Datentyp für Variable map</span>
+<span class="hljs-comment">// automatisch auf HashMap&lt;Integer, String&gt;.</span>
+<span class="hljs-keyword">var</span> map = <span class="hljs-keyword">new</span> HashMap&lt;Integer, String&gt;();
+</div></code></pre>
+<p>Hinweis: Javas <code>var</code> hat nichts mit dem <code>var</code> der Sprache JavaScript zu tun. Mit <code>var</code> erzeugen wir in Java eine Variable mit festgelegtem Datentyp, der sich nicht später ändern kann.</p>
+<h1 id="die-standard-streams-eines-programms">Die Standard Streams eines Programms</h1>
+<p>Für jedes Programm, das wir ausführen, erstellt das Betriebssytem eine Datenstruktur namens <em>Prozess</em>. Diese enthält sämtliche Informationen über das laufende Programm einschließlich verwendeter Resourcen und Zugriffsrechte.</p>
+<p>Standardmäßig besitzt jeder Prozess einen Input Stream und zwei Output Streams. Wenn man ein Kommandozeilenprogramm startet, ist der Input Stream für gewöhnlich mit dem Terminal verbunden. Dasselbe gilt für die beiden Output Streams (Normal und Error).</p>
+<p>In Java können wir diese Streams mit <code>System.in</code> (Input Stream), <code>System.out</code> (Output Stream) und <code>System.err</code> (Error Output Stream) ansprechen.</p>
+<p>Im Terminal lassen sich die Quellen und Senken der Streams konfigurieren. Somit können auch Daten aus Dateien gelesen und Daten in Dateien geschrieben werden. Beispiel:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Inhalt von Datei numbers.txt mit dem</span>
+<span class="hljs-comment"># Input Stream von Adder verknüpfen.</span>
+cat .\numbers.txt | java .\Adder.java
+
+<span class="hljs-comment"># Daten des Output Streams von Adder in Datei</span>
+<span class="hljs-comment"># output.txt schreiben.</span>
+java Adder.java &gt; output.txt
+</div></code></pre>
+<p><img src="../diagrams/standard-streams-of-a-process.svg" alt=""></p>
+<h1 id="daten-einlesen-mit-der-klasse-scanner">Daten einlesen mit der Klasse Scanner</h1>
+<p>Ein Scanner ist ein Objekt, mit dem wir Daten aus verschiedenen Datenquellen lesen können. Mögliche Quellen sind zum Beispiel Dateien, Zeichenketten, Pipes (FIFO), Network Sockets und natürlich Terminals.</p>
+<p>Der Scanner liest seine Daten wie von einem &quot;Transportband&quot;. Im Normalfall liest der Scanner immer bis zum nächsten Whitespace Zeichen - dem Delimiter.</p>
+<p>Standardmäßig blockiert ein Scanner das Programm, wenn Daten einzulesen sind, aber das &quot;Transportband&quot; leer ist.</p>
+<pre class="hljs"><code><div><span class="hljs-comment">// Scanner liest Daten aus dem Input Stream.</span>
+<span class="hljs-keyword">var</span> s = <span class="hljs-keyword">new</span> Scanner(System.in);
+<span class="hljs-comment">// Blockiert, falls keine Daten im Stream vorhanden.</span>
+<span class="hljs-keyword">int</span> number = s.nextInt();
+<span class="hljs-keyword">int</span> anotherNumber = s.nextInt(); 
+
+System.out.printf(<span class="hljs-string">"Eingelesene Zahl ist %d\n"</span>, number);
+System.out.printf(<span class="hljs-string">"Zweite eingelesene Zahl ist %d\n"</span>, anotherNumber);
+<span class="hljs-comment">// Gibt es noch weitere Daten im Input Stream?</span>
+<span class="hljs-keyword">if</span> (s.hasNext()) {
+    System.out.printf(<span class="hljs-string">"Weitere Daten: %s\n"</span>, s.next());
+}
+</div></code></pre>
+<p>Funktionsweise des Scanners als Diagramm:</p>
+<p><img src="../diagrams/how-a-scanner-works.svg" alt=""></p>
+
 </body>
 </html>

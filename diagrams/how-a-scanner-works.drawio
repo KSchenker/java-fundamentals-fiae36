@@ -1,0 +1,45 @@
+<mxfile host="Electron" modified="2024-03-22T09:08:57.140Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.3 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="HG4HrhURUVq8Y0NKVh77" version="22.0.3" type="device">
+  <diagram name="Seite-1" id="ZrsEow9JwQ1Cuq64ceqL">
+    <mxGraphModel dx="989" dy="582" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="lkWhwdXVQLf_qcaZViJu-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="lkWhwdXVQLf_qcaZViJu-12">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="342" y="197.75" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lkWhwdXVQLf_qcaZViJu-12" value="Terminal sendet&lt;br&gt;Nutzereingaben an&lt;br&gt;Input Stream des Java&lt;br&gt;Programms" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#434445;aspect=fixed;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.vvd.keyboard;" vertex="1" parent="1">
+          <mxGeometry x="182" y="180" width="50" height="35.5" as="geometry" />
+        </mxCell>
+        <mxCell id="lkWhwdXVQLf_qcaZViJu-14" value="Unser Programm" style="rounded=0;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="708" y="127" width="290" height="185" as="geometry" />
+        </mxCell>
+        <mxCell id="lkWhwdXVQLf_qcaZViJu-16" value="Scanner&lt;br&gt;(liest Zeichen vom Transportband (FIFO)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="744" y="166.5" width="214" height="59" as="geometry" />
+        </mxCell>
+        <mxCell id="lkWhwdXVQLf_qcaZViJu-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="lkWhwdXVQLf_qcaZViJu-19" target="lkWhwdXVQLf_qcaZViJu-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lkWhwdXVQLf_qcaZViJu-19" value="FIFO Speicher&lt;br&gt;(wie ein Transportband)" style="verticalLabelPosition=middle;outlineConnect=0;align=center;dashed=0;html=1;verticalAlign=middle;shape=mxgraph.pid.misc.conveyor_(belt);labelPosition=center;" vertex="1" parent="1">
+          <mxGeometry x="351" y="176.5" width="268" height="39" as="geometry" />
+        </mxCell>
+        <mxCell id="lkWhwdXVQLf_qcaZViJu-22" value="1" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="788" y="215.5" width="32" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="lkWhwdXVQLf_qcaZViJu-23" value="3" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="747" y="215.5" width="32" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="lkWhwdXVQLf_qcaZViJu-24" value="Space" style="whiteSpace=wrap;html=1;aspect=fixed;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="534" y="134.5" width="32" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="lkWhwdXVQLf_qcaZViJu-25" value="\n" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="456" y="134.5" width="32" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="lkWhwdXVQLf_qcaZViJu-28" value="x" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="495" y="134.5" width="32" height="32" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

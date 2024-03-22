@@ -499,4 +499,71 @@ try {
 
 Hinweis: Es dürfen mehrere `catch` Blöcke auf einen `try` Block folgen. Jeder `catch` Block kann eine oder mehrere Exceptions abfangen. Es muss darauf geachtet werden, dass spezifische Exceptions vor allgemeineren Exceptions per `catch` abzufangen sind.
 
-Wenn eine Exception ausgelöst, aber nicht per `try-catch` behandelt wird, dann bricht die Java Runtime Environment die aktuelle Methode ab und reicht das Exception Objekt an den Aufrufer der Methode. Falls auch der Aufrufer die Exception nicht abfängt, wird die Exception abermals an den Aufrufer des Aufrufers weitergereicht usw. Sofern die Exception an die `main` Methode weitergereicht und dort nicht behandelt wird, bricht das Programm abrupt ab. 
+Wenn eine Exception ausgelöst, aber nicht per `try-catch` behandelt wird, dann bricht die Java Runtime Environment die aktuelle Methode ab und reicht das Exception Objekt an den Aufrufer der Methode. Falls auch der Aufrufer die Exception nicht abfängt, wird die Exception abermals an den Aufrufer des Aufrufers weitergereicht usw. Sofern die Exception an die `main` Methode weitergereicht und dort nicht behandelt wird, bricht das Programm abrupt ab.
+
+# Den Compiler den Variablendatentyp ermitteln lassen
+
+In wenigen Situationen ist es hilfreich, den Compiler den Datentyp einer Variablen selbst ermitteln zu lassen. Das ist zum Beispiel bei der Objektkonstruktion der Fall. Dort muss man häufig den Datentyp zweimal angeben: nach dem `new` Operator und vor der zu erstellenden Variable. Um diese Redundanz zu vermeiden, bietet Java das Schlüsselwort `var` an. Beispiel:
+
+```java
+// Ohne Verwendung von var:
+HashMap<Integer, String> map = new HashMap<Integer, String>();
+
+// Mit Verwendung von var.
+// Compiler setzt den Datentyp für Variable map
+// automatisch auf HashMap<Integer, String>.
+var map = new HashMap<Integer, String>();
+```
+
+Hinweis: Javas `var` hat nichts mit dem `var` der Sprache JavaScript zu tun. Mit `var` erzeugen wir in Java eine Variable mit festgelegtem Datentyp, der sich nicht später ändern kann.
+
+
+# Die Standard Streams eines Programms
+
+Für jedes Programm, das wir ausführen, erstellt das Betriebssytem eine Datenstruktur namens _Prozess_. Diese enthält sämtliche Informationen über das laufende Programm einschließlich verwendeter Resourcen und Zugriffsrechte.
+
+Standardmäßig besitzt jeder Prozess einen Input Stream und zwei Output Streams. Wenn man ein Kommandozeilenprogramm startet, ist der Input Stream für gewöhnlich mit dem Terminal verbunden. Dasselbe gilt für die beiden Output Streams (Normal und Error).
+
+In Java können wir diese Streams mit `System.in` (Input Stream), `System.out` (Output Stream) und `System.err` (Error Output Stream) ansprechen.
+
+Im Terminal lassen sich die Quellen und Senken der Streams konfigurieren. Somit können auch Daten aus Dateien gelesen und Daten in Dateien geschrieben werden. Beispiel:
+
+```powershell
+# Inhalt von Datei numbers.txt mit dem
+# Input Stream von Adder verknüpfen.
+cat .\numbers.txt | java .\Adder.java
+
+# Daten des Output Streams von Adder in Datei
+# output.txt schreiben.
+java Adder.java > output.txt
+```
+
+![](../diagrams/standard-streams-of-a-process.svg)
+
+# Daten einlesen mit der Klasse Scanner
+
+Ein Scanner ist ein Objekt, mit dem wir Daten aus verschiedenen Datenquellen lesen können. Mögliche Quellen sind zum Beispiel Dateien, Zeichenketten, Pipes (FIFO), Network Sockets und natürlich Terminals.
+
+Der Scanner liest seine Daten wie von einem "Transportband". Im Normalfall liest der Scanner immer bis zum nächsten Whitespace Zeichen - dem Delimiter.
+
+Standardmäßig blockiert ein Scanner das Programm, wenn Daten einzulesen sind, aber das "Transportband" leer ist.
+
+```java
+// Scanner liest Daten aus dem Input Stream.
+var s = new Scanner(System.in);
+// Blockiert, falls keine Daten im Stream vorhanden.
+int number = s.nextInt();
+int anotherNumber = s.nextInt(); 
+
+System.out.printf("Eingelesene Zahl ist %d\n", number);
+System.out.printf("Zweite eingelesene Zahl ist %d\n", anotherNumber);
+// Gibt es noch weitere Daten im Input Stream?
+if (s.hasNext()) {
+    System.out.printf("Weitere Daten: %s\n", s.next());
+}
+```
+
+Funktionsweise des Scanners als Diagramm:
+
+![](../diagrams/how-a-scanner-works.svg)
+

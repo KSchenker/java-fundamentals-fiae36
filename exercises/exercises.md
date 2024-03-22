@@ -258,4 +258,7 @@ Wenn weniger als zwei Argumente angegeben werden, ist der Nutzer über die korre
 Tipp: Verwende `Integer.parseInt` zum Parsen. Die Uhrzeiten lassen sich zum Beispiel mit der Instanzmethode `split` der Klasse `String` zerlegen.
 
 
+# Teil C
+
+
 
