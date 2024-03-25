@@ -645,3 +645,105 @@ try {
     System.err.printf("Irgendein anderer Input/Output Fehler\n");
 }
 ```
+
+# Unterschied zwischen Referenzdatentypen und primitiven Datentypen
+
+Wenn wir einen Wert primitiven Datentyps in einer Variablen speichern, dann enthält diese Variable den vollständigen Wert. Kopiert man nun diese Variable in eine andere Variable, so wird der Wert vollständig kopiert.
+
+```java
+int a = 123;
+// Der Wert 123 wird nach b kopiert.
+int b = a;
+// b ist vollständige Kopie von a.
+b++;
+// a ist weiterhin 123
+// b ist nun 124.
+```
+
+Erstellen wir eine Variable mit einem Referenzdatentyp, dann speichert diese Variable nicht ein Datenobjekt, sondern lediglich einen Verweis auf ein Datenobjekt. Man kann sich eine Referenz wie eine Speicheradresse oder ID vorstellen. Kopiert man nun diese sogenannte Referenzvariable in eine andere, dann wird also nicht das referenzierte Objekt kopiert, sondern lediglich die Referenz. Dadurch verweisen nun Originalvariable und Kopievariable auf dasselbe Objekt im Speicher.
+
+```java
+// Variable name enthält _nicht_ das StringBuilder-Objekt,
+// sondern nur einen Verweis auf dieses Objekt.
+var name = new StringBuilder("Bob");
+// Indem wir name nach copy kopieren, kopieren wir lediglich
+// die Referenz. copy und name verweisen nun auf dasselbe
+// StringBuilder-Objekt.
+StringBuilder copy = name;
+
+System.out.println(name); // Bob
+System.out.println(copy); // Bob
+name.append(" Ross");
+System.out.println(name); // Bob Ross
+System.out.println(copy); // Bob Ross
+```
+
+Rufen wir eine Methode auf, dann werden die Argumente in die zugehörigen Parameter kopiert. Im Falle von primitiven Werten, entsteht dabei eine vollständige Kopie. Falls Referenzen kopiert werden, kann die aufgerufene Methode über diese Referenz auf das Datenobjekt direkt zugreifen. Sie erhält also keine Kopie eines Datenobjekts.
+
+```java
+int[] primes = { 2, 3, 5, 7, 11 };
+// Variable primes wird in Parameter numbers der Methode modify
+// kopiert. Dadurch erlangt modify direkten Zugriff auf das
+// Array primes.
+modify(primes);
+// Gibt aus: [111, 3, 5, 7, 11]
+System.out.println(Arrays.toString(primes));
+
+void modify(int[] numbers) {
+    numbers[0] = 111;
+}
+```
+
+Die Übergabe von Argumenten an Methoden geschieht in Java stets _by value_. Der Wert wird also in den Parameter kopiert.
+
+Fälschlicherweise wird oft behauptet, Java unterstütze _Pass by Reference_. Pass by Reference hieße, dass ein Parameter Alias / Repräsentant einer anderen Variable sein darf.
+
+```java
+int[] primes = { 2, 3, 5, 7, 11 };
+modify(primes);
+
+void modify(int[] numbers) {
+    // Da Argumente by Value übergeben werden,
+    // ist numbers lediglich Kopie von primes.
+    // Weisen wir numbers ein neues Array Objekt
+    // zu, hat dies keine Auswirkung auf primes.
+    numbers = new int[] { 13, 17, 19, 23 };
+}
+
+// Gäbe es eine Art "Pass By Reference" in Java
+// könnte man primes direkt mittels numbers "umlenken"
+// auf ein anderes Array-Objekt. Pseudo Code:
+void modify(ref int[] numbers) {
+    // hier würde indirekt stehen: primes = new int[] { 1, 2, 3}
+    numbers = new int[] { 1, 2, 3}
+}
+```
+
+# Arrays kopieren
+
+Kopieren wir einen Array, dessen Elemente primitiv sind (z.B. int, double), so ist die Kopie völlig isoliert vom Original.
+
+Kopieren wir jedoch einen Array, dessen Elemente Referenzen sind (z.B. String, StringBuilder), so ist die Kopie nur teilweise vom Original isoliert. Die "Zellen" des Originals und der Kopie verweisen nämlich auf diesselben Datenobjekte im Speicher. Einerseits ist dadurch das Kopieren schnell erledigt, andererseits birgt das aber auch Gefahren, wenn man die referenzierten Objekte modifiziert.
+
+![](../diagrams/shallow-copy-of-array.svg)
+
+Würde man eine vollständig isolierte Kopie erzeugen wollen, müsste man auch die von den Zellen referenzierten Datenobjekte kopieren. Das ist aber weder bei `clone` noch bei `Arrays.copyOf` der Fall.
+
+# Zweidimensionale Arrays
+
+Java unterstützt nur eindimensionale Arrays. Möchte man mehrere Dimensionen abbilden, kann man Arrays ineinander schachteln. Ein zweidimensionaler Array ist letztlich nur ein eindimensionaler Array, dessen Elemente ebenfalls Arrays sind.
+
+![](../diagrams/2d-array-example.svg)
+
+```java
+int[][] table = {
+    { 1, 2, 3, 4 },
+    { 5, 6, 7, 8, 9 },
+    { 10, 11, 12 },
+};
+// Datentyp von table ist int[3][].
+// Datentyp von table[0] ist int[4].
+// Datentyp von table[1] ist int[5].
+// Datentyp von table[2] ist int[3].
+// Datentyp von table[2][1] ist int.
+```

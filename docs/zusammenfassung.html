@@ -984,6 +984,84 @@ String fileContent = Files.readString(pathToFile, StandardCharsets.UTF_8);
     System.err.printf(<span class="hljs-string">"Irgendein anderer Input/Output Fehler\n"</span>);
 }
 </div></code></pre>
+<h1 id="unterschied-zwischen-referenzdatentypen-und-primitiven-datentypen">Unterschied zwischen Referenzdatentypen und primitiven Datentypen</h1>
+<p>Wenn wir einen Wert primitiven Datentyps in einer Variablen speichern, dann enthält diese Variable den vollständigen Wert. Kopiert man nun diese Variable in eine andere Variable, so wird der Wert vollständig kopiert.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> a = <span class="hljs-number">123</span>;
+<span class="hljs-comment">// Der Wert 123 wird nach b kopiert.</span>
+<span class="hljs-keyword">int</span> b = a;
+<span class="hljs-comment">// b ist vollständige Kopie von a.</span>
+b++;
+<span class="hljs-comment">// a ist weiterhin 123</span>
+<span class="hljs-comment">// b ist nun 124.</span>
+</div></code></pre>
+<p>Erstellen wir eine Variable mit einem Referenzdatentyp, dann speichert diese Variable nicht ein Datenobjekt, sondern lediglich einen Verweis auf ein Datenobjekt. Man kann sich eine Referenz wie eine Speicheradresse oder ID vorstellen. Kopiert man nun diese sogenannte Referenzvariable in eine andere, dann wird also nicht das referenzierte Objekt kopiert, sondern lediglich die Referenz. Dadurch verweisen nun Originalvariable und Kopievariable auf dasselbe Objekt im Speicher.</p>
+<pre class="hljs"><code><div><span class="hljs-comment">// Variable name enthält _nicht_ das StringBuilder-Objekt,</span>
+<span class="hljs-comment">// sondern nur einen Verweis auf dieses Objekt.</span>
+<span class="hljs-keyword">var</span> name = <span class="hljs-keyword">new</span> StringBuilder(<span class="hljs-string">"Bob"</span>);
+<span class="hljs-comment">// Indem wir name nach copy kopieren, kopieren wir lediglich</span>
+<span class="hljs-comment">// die Referenz. copy und name verweisen nun auf dasselbe</span>
+<span class="hljs-comment">// StringBuilder-Objekt.</span>
+StringBuilder copy = name;
+
+System.out.println(name); <span class="hljs-comment">// Bob</span>
+System.out.println(copy); <span class="hljs-comment">// Bob</span>
+name.append(<span class="hljs-string">" Ross"</span>);
+System.out.println(name); <span class="hljs-comment">// Bob Ross</span>
+System.out.println(copy); <span class="hljs-comment">// Bob Ross</span>
+</div></code></pre>
+<p>Rufen wir eine Methode auf, dann werden die Argumente in die zugehörigen Parameter kopiert. Im Falle von primitiven Werten, entsteht dabei eine vollständige Kopie. Falls Referenzen kopiert werden, kann die aufgerufene Methode über diese Referenz auf das Datenobjekt direkt zugreifen. Sie erhält also keine Kopie eines Datenobjekts.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span>[] primes = { <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>, <span class="hljs-number">11</span> };
+<span class="hljs-comment">// Variable primes wird in Parameter numbers der Methode modify</span>
+<span class="hljs-comment">// kopiert. Dadurch erlangt modify direkten Zugriff auf das</span>
+<span class="hljs-comment">// Array primes.</span>
+modify(primes);
+<span class="hljs-comment">// Gibt aus: [111, 3, 5, 7, 11]</span>
+System.out.println(Arrays.toString(primes));
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">modify</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] numbers)</span> </span>{
+    numbers[<span class="hljs-number">0</span>] = <span class="hljs-number">111</span>;
+}
+</div></code></pre>
+<p>Die Übergabe von Argumenten an Methoden geschieht in Java stets <em>by value</em>. Der Wert wird also in den Parameter kopiert.</p>
+<p>Fälschlicherweise wird oft behauptet, Java unterstütze <em>Pass by Reference</em>. Pass by Reference hieße, dass ein Parameter Alias / Repräsentant einer anderen Variable sein darf.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span>[] primes = { <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>, <span class="hljs-number">7</span>, <span class="hljs-number">11</span> };
+modify(primes);
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">modify</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] numbers)</span> </span>{
+    <span class="hljs-comment">// Da Argumente by Value übergeben werden,</span>
+    <span class="hljs-comment">// ist numbers lediglich Kopie von primes.</span>
+    <span class="hljs-comment">// Weisen wir numbers ein neues Array Objekt</span>
+    <span class="hljs-comment">// zu, hat dies keine Auswirkung auf primes.</span>
+    numbers = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[] { <span class="hljs-number">13</span>, <span class="hljs-number">17</span>, <span class="hljs-number">19</span>, <span class="hljs-number">23</span> };
+}
+
+<span class="hljs-comment">// Gäbe es eine Art "Pass By Reference" in Java</span>
+<span class="hljs-comment">// könnte man primes direkt mittels numbers "umlenken"</span>
+<span class="hljs-comment">// auf ein anderes Array-Objekt. Pseudo Code:</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">modify</span><span class="hljs-params">(ref <span class="hljs-keyword">int</span>[] numbers)</span> </span>{
+    <span class="hljs-comment">// hier würde indirekt stehen: primes = new int[] { 1, 2, 3}</span>
+    numbers = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[] { <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>}
+}
+</div></code></pre>
+<h1 id="arrays-kopieren">Arrays kopieren</h1>
+<p>Kopieren wir einen Array, dessen Elemente primitiv sind (z.B. int, double), so ist die Kopie völlig isoliert vom Original.</p>
+<p>Kopieren wir jedoch einen Array, dessen Elemente Referenzen sind (z.B. String, StringBuilder), so ist die Kopie nur teilweise vom Original isoliert. Die &quot;Zellen&quot; des Originals und der Kopie verweisen nämlich auf diesselben Datenobjekte im Speicher. Einerseits ist dadurch das Kopieren schnell erledigt, andererseits birgt das aber auch Gefahren, wenn man die referenzierten Objekte modifiziert.</p>
+<p><img src="../diagrams/shallow-copy-of-array.svg" alt=""></p>
+<p>Würde man eine vollständig isolierte Kopie erzeugen wollen, müsste man auch die von den Zellen referenzierten Datenobjekte kopieren. Das ist aber weder bei <code>clone</code> noch bei <code>Arrays.copyOf</code> der Fall.</p>
+<h1 id="zweidimensionale-arrays">Zweidimensionale Arrays</h1>
+<p>Java unterstützt nur eindimensionale Arrays. Möchte man mehrere Dimensionen abbilden, kann man Arrays ineinander schachteln. Ein zweidimensionaler Array ist letztlich nur ein eindimensionaler Array, dessen Elemente ebenfalls Arrays sind.</p>
+<p><img src="../diagrams/2d-array-example.svg" alt=""></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span>[][] table = {
+    { <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> },
+    { <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span> },
+    { <span class="hljs-number">10</span>, <span class="hljs-number">11</span>, <span class="hljs-number">12</span> },
+};
+<span class="hljs-comment">// Datentyp von table ist int[3][].</span>
+<span class="hljs-comment">// Datentyp von table[0] ist int[4].</span>
+<span class="hljs-comment">// Datentyp von table[1] ist int[5].</span>
+<span class="hljs-comment">// Datentyp von table[2] ist int[3].</span>
+<span class="hljs-comment">// Datentyp von table[2][1] ist int.</span>
+</div></code></pre>
 
 </body>
 </html>
