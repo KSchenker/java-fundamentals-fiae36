@@ -533,6 +533,125 @@ code {
 <p>Das Program muss auch mit Tageswechseln umgehen können. Beispiel: <code>java MyApp 21:20 02:03</code> gibt <code>4h 43m</code> aus.</p>
 <p>Wenn weniger als zwei Argumente angegeben werden, ist der Nutzer über die korrekte Verwendung des Programms zu informieren.</p>
 <p>Tipp: Verwende <code>Integer.parseInt</code> zum Parsen. Die Uhrzeiten lassen sich zum Beispiel mit der Instanzmethode <code>split</code> der Klasse <code>String</code> zerlegen.</p>
+<h1 id="teil-c">Teil C</h1>
+<h2 id="fakult%C3%A4t-berechnen">Fakultät berechnen</h2>
+<p>Es ist ein Programm zu schreiben, dass die Fakultät einer positiven Zahl <code>n &gt;= 0</code> berechnet. Die Fakultät einer Zahl <code>n</code> wird <code>n!</code> geschrieben und bedeutet <code>1 * 2 * ... * (n-1) * n</code>. Per Definition ist <code>0! = 1</code>.</p>
+<p>Aufruf: <code>app n</code>. Beispiel: <code>app 4</code> gibt 24 aus.</p>
+<p>Implementiere das Programm in zwei Varianten:</p>
+<ul>
+<li>Die erste Variante verwendet einen iterativen Algorithmus.</li>
+<li>Die zweite Variante verwendet einen rekursiven Algorithmus.</li>
+</ul>
+<h2 id="fibonacci-folge-berechnen">Fibonacci-Folge berechnen</h2>
+<p>Die Fibonacci-Folge <code>fib</code> ist eine rasant wachsende Zahlenfolge. Es gilt: <code>fib(0) = 0</code>, <code>fib(1) = 1</code> und <code>fib(2) = 1</code>. Für <code>n &gt;= 3</code> gilt <code>fib(n) = fib(n-1) + fib(n-2)</code>.</p>
+<p>Es ist ein Programm zu schreiben, dass die Zahlen <code>fib(0)</code>, <code>fib(1)</code> bis <code>fib(n)</code> auf der Kommandozeile ausgibt.</p>
+<p>Aufruf: <code>Fibonacci n</code>. Beispiel: <code>Fibonacci 6</code> gibt <code>0, 1, 1, 2, 3, 5, 8</code> aus.</p>
+<p>Implementiere das Programm in zwei Varianten:</p>
+<ul>
+<li>Die erste Variante soll einen iterativen Algorithmus verwenden.</li>
+<li>Die zweite Variante soll einen rekursiven Algorithmus benutzen.</li>
+</ul>
+<h2 id="arrays-konkatenieren-aneinanderh%C3%A4ngen">Arrays konkatenieren (aneinanderhängen)</h2>
+<p>Schreibe ein Programm, das einen zusammengesetzten Array aus zwei vorgegebenen Arrays erzeugt und dann ausgibt.</p>
+<p>Aufruf: <code>app array-b / array-c</code>. Beispiel: <code>app 1 2 3 / u v w x</code> erzeugt intern die beiden Arrays <code>[&quot;1&quot;,&quot;2&quot;,&quot;3&quot;]</code> und <code>[&quot;u&quot;,&quot;v&quot;,&quot;w&quot;,&quot;x&quot;]</code>. Das Programm fügt dann beide Arrays zu einem neuen Array mit den Elementen <code>[&quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;u&quot;,&quot;v&quot;,&quot;w&quot;,&quot;x&quot;]</code> zusammen. Am Schluss erfolgt die Ausgabe.</p>
+<p>Tipp: Erstelle dir ein neues Array mit passender Länge und kopiere die Elemente beider Arrays mit einer Schleife.</p>
+<h2 id="arrays-in-arrays-einf%C3%BCgen">Arrays in Arrays einfügen</h2>
+<p>Schreibe ein Programm, das einen Array <code>a</code> in einen Array <code>b</code> an Position <code>index</code> &quot;einfügt&quot;. Da Arrays eine feste Länge besitzten, ist ein neuer Array zu erstellen, der alle Elemente von <code>b</code> inklusive aller Elemente von <code>a</code> enthält.</p>
+<p>Aufruf: <code>app array-a / array-b / index</code>. Beispiel: <code>app 1 2 3 / a b c d / 2</code> erzeugt intern den Array <code>a b 1 2 3 c d</code> und gibt ihn anschließend aus. Beispiel 2: <code>app 1 2 3 / a b c / 0</code> gibt <code>1 2 3 a b c</code> aus und <code>app 1 2 3 / a b c / 3</code> gibt <code>a b c 1 2 3</code> aus.</p>
+<p>Tipp: Zum Einfügen sind herkömmliche Schleifen ausreichend. Du benötigst keine besonderen Array Funktionen.</p>
+<h2 id="minimum-maximum-durchschnitt-und-median-ermitteln">Minimum, Maximum, Durchschnitt und Median ermitteln</h2>
+<p>Ein Programm soll aus einer Zahlenreihe das Minimum, das Maximum, den Durchschnitt sowie den Median ermitteln. Sofern die Zahlenreihe ungeräde Länge hat, ist der Median als Durchschnitt der beiden mittlersten Elemente der sortierten Zahlenreihe zu berechnen.</p>
+<p>Aufruf: <code>app number...</code>. Beispiel: <code>app 2 5 1 2 8 9 9 9</code> gibt aus: <code>Min: 1 Max: 9 Avg: 5.625 Med: 6.5</code>.  Der Median berechnet sich in diesem Fall aus dem arithmetischen Mittel der Zahlen 5 und 8, da diese in der sortierten Reihenfolge die beiden mittleren Elemente sind. Beispiel 2: <code>app 4 4 2</code> gibt aus: <code>Min: 2 Max: 4 Avg: 3.333333 Med: 4</code>. In diesem Fall ist der Median das mittlere Element der sortierten Zahlenfolge.</p>
+<h2 id="unikate-in-einem-array-finden">Unikate in einem Array finden</h2>
+<p>Schreibe ein Programm, dass die Unikate seiner Kommandozeilenargumente ermittelt. Die Unikate sind aufsteigend sortiert auszugeben.</p>
+<p>Aufruf: <code>app arguments...</code>. Beispiel: <code>app 2 1 1 3 1 5 9 a B</code> gibt <code>1 2 3 5 9 B a</code> aus. Strings werden lexikographisch geordnet. Da die Code-Points der Dezimalziffern kleiner als die Code-Points der Buchstaben sind, erscheinen diese zuerst. Die Code-Points der Großbuchstaben sind wiederum kleiner als die der Kleinbuchstaben.</p>
+<p>Das Programm ist in zwei Varianten zu implementieren:</p>
+<ul>
+<li>In der ersten Variante sollen die Kommandozeilenargumente aufsteigend sortiert werden. Die Suche nach Unikaten verwendet die sortierten Argumente.</li>
+<li>In der zweiten Variante sollen die Kommandozeilenargumente unberührt bleiben. Die Suche nach Unikaten verwendet die unsortierten Argumente.</li>
+</ul>
+<p>Tipps:</p>
+<ul>
+<li>Verwende die Klasse <code>java.util.Arrays</code> zum Sortieren (<code>sort</code>) und Kürzen (<code>copyOf</code> und <code>copyOfRange</code>) von Arrays.</li>
+<li>Arrays haben eine feste Länge und können weder wachsen noch schrumpfen. Lege dir für die zu findenden Unikate ein Array an, dass theoretisch alle Elemente aufnehmen kann. Kürze am Ende der Suche, falls notwendig.</li>
+</ul>
+<h2 id="wiederholungen-eines-zeichens-in-einer-zeichenkette-finden">Wiederholungen eines Zeichens in einer Zeichenkette finden</h2>
+<p>Es ist ein Programm zu schreiben, dass in einer Zeichenkette <code>s</code> nach <code>n</code> aufeinanderfolgenden Zeichen <code>c</code> sucht. Das Programm beginnt die Suche von links und gibt den Index der ersten gefundenen Sequenz aus. Sofern das Programm keine Sequenz findet, informiert es den Nutzer darüber.</p>
+<p>Aufruf: <code>app s c n</code>. Beispiel: <code>app abbcaaadee a 2</code> gibt <code>4</code> aus, da hier die erste Sequenz von <code>a</code> mit mindestens 2 Wiederholungen erscheint.</p>
+<p>Vorgabe zur Implementierung:</p>
+<ul>
+<li>Verzichte auf die Verwendung von <code>substring</code> und nutze stattdessen zwei ineinander geschachtelte Schleifen.</li>
+</ul>
+<h2 id="texte-mit-der-c%C3%A4sar-chiffre-ver--und-entschl%C3%BCsseln">Texte mit der Cäsar-Chiffre ver- und entschlüsseln</h2>
+<h3 id="funktionsweise-der-chiffre">Funktionsweise der Chiffre</h3>
+<p>Die Cäsar-Chiffre ist ein sehr einfaches, symmetrisches Verschlüsselungsverfahren. Symmetrisch bedeutet, dass für die Ver- und Entschlüsselung derselbe Schlüssel genutzt wird. Die Cäsar-Chiffre verwendet zum Chiffrieren zwei Alphabete: das Klartextalphabet (plain text alphabet) und das Geheimtextalphabet (cipher text alphabet). Das Geheimalphabet wird gebildet, indem das Klartextalphabet um <code>shift</code> Positionen nach links bzw. rechts geschoben bzw. rotiert wird. Beispiel:</p>
+<pre class="hljs"><code><div>Plain-Text Alphabet  : a b c d e f g
+
+Cipher-Text Alphabet : d e f g a b c  Shift: -3 (links)
+Cipher-Text Alphabet : c b a g f e d  Shift: -3 (links) und reverse
+Cipher-Text Alphabet : e f g a b c d  Shift: +3 (rechts)
+Cipher-Text Alphabet : d c b a g f e  Shift: +3 (rechts) und reverse
+
+Cipher-Text Alphabet : a b c d e f g  Shift: +7 (rechts)
+Cipher-Text Alphabet : a b c d e f g  Shift: +0 (rechts)
+Cipher-Text Alphabet : g a b c d e f  Shift: +8 (rechts)
+Cipher-Text Alphabet : g a b c d e f  Shift: +1 (rechts)
+</div></code></pre>
+<p>Oben sind ein paar Verschiebungen des Klartextalphabets zu sehen. Ist der Shift negativ, wird das Klartextalphabet nach links verschoben bzw. rotiert. Ist der Shift hingegen positiv, wird entsprechend nach rechts verschoben bzw. rotiert. Bei der Cäsar-Chiffre kann das Geheimalphabet anschließend noch umgekehrt werden, sofern das erwünscht ist (reverse).</p>
+<p>Das obige Klartextalphabet besteht aus 7 Buchstaben. Würde man um 7 Positionen nach links oder rechts verschieben, erhielte man wieder das Klartextalphabet. Eine Verschiebung um +8 ist identisch zu einer Verschiebung um +1. Analog ist eine Verschiebung um -8 Positionen identisch zu einer Verschiebung um -1.</p>
+<p>Die Cäsar-Chiffre verschlüsselt einen Klartext, indem sie jedes Zeichen des Klartextes durch das korrespondierende Zeichen des Geheimalphabets ersetzt. Beispiel:</p>
+<pre class="hljs"><code><div>Plain-Text Alphabet  : a b c d e f g h i j k l m n o p q r s t u v w x y z
+Cipher-Text Alphabet : x y z a b c d e f g h i j k l m n o p q r s t u v w
+
+Plain-Text  : java ist toll
+Cipher-Text : gxsx fpq qlii
+</div></code></pre>
+<p>Im obigen Beispiel wird das Klartextzeichen <code>j</code> durch das Geheimtextzeichen <code>g</code> ersetzt. Das Zeichen <code>a</code> durch <code>x</code> und <code>v</code> durch <code>s</code>. Hier erkennt man schon eine deutliche Schwachstelle des Verfahrens: gleiche Klartextzeichen werden immer auf gleiche Geheimtextzeichen abgebildet.</p>
+<p>Die Entschlüsselung funktioniert genauso, nur dass man die Zeichen des Geheimtextes auf die korrespondierenden Klartextzeichen abbildet.</p>
+<p>Für eine erfolgreiche Ver- und Entschlüsselung muss derselbe Schlüssel verwendet werden. Bei der Cäsar-Chiffre ist der Schlüssel der normalisierte Shift des Klartextalphabets. Mit normalisiert ist gemeint, dass der Shift-Wert auf den Bereich <code>[0, alphabet.length - 1]</code> abgebildet wird. Beispiel: Hat das Alphabet eine Länge von 26, dann wird der Shift-Wert <code>-1</code> auf den Wert <code>25</code> abgebildet, denn eine Verschiebung um eine Stelle nach links entspricht einer Verschiebung um 25 Stellen nach rechts. Analog würde der Wert <code>27</code> auf den Wert <code>1</code> abgebildet, denn eine Verschiebung um 27 Stellen nach rechts, entspricht effektiv einer Verschiebung um eine Stelle nach rechts.</p>
+<h3 id="aufgabenstellung">Aufgabenstellung</h3>
+<p>Schreibe ein Programm, das Texte mit der Cäsar-Chiffre ver- und entschlüsselt. Der Anwender muss dazu das Kommando (encrypt, decrypt), den Text sowie den Schlüssel (Shift-Wert) angeben. Zusätzlich soll die Angabe des Arguments <code>--reverse</code> möglich sein. Ist <code>--reverse</code> angegeben, muss das gebildete Geheimtextalphabet vor der Ver- bzw. Entschlüsselung umgekehrt (reverse) werden.</p>
+<p>Aufruf: <code>app &lt;command&gt; &lt;text&gt; &lt;shift&gt; [--reverse]</code>.</p>
+<p>Beispielaufrufe: Hier gilt die Annahme, dass das Klartextalphabet aus den Buchstaben <code>a-z</code> besteht.</p>
+<ul>
+<li><code>app encrypt &quot;java is awesome&quot; 3</code> liefert  <code>gxsx fp xtbpljb</code>.</li>
+<li><code>app encrypt &quot;java is awesome&quot; -5</code> liefert <code>ofaf nx fbjxtrj</code>.</li>
+<li><code>app encrypt &quot;java is awesome&quot; -5 --reverse</code> liefert <code>veje wm eiamqsa</code>.</li>
+<li><code>app decrypt &quot;ofaf nx fbjxtrj&quot; -5</code> liefert <code>java is awesome</code>.</li>
+</ul>
+<p>Wenn zu wenig Argumente angegeben werden, ist folgender Text auszugeben:</p>
+<pre class="hljs"><code><div>Usage: CaesarCipher &lt;command&gt; &lt;text&gt; &lt;shift&gt; [--reverse]
+
+Options:
+  --reverse    Reverses the cipher alphabet.
+
+Commands:
+  encrypt      Encrypts the plain text with the given shift.
+  decrypt      Decrypts the cipher text with the given shift.
+</div></code></pre>
+<p>Speichere den obigen Text händisch in einer Datei namens <code>help.txt</code> ab. Diese Datei ist in einem Unterordner namens <code>docs</code> abzulegen. Bei Programmbegin ist zu prüfen, ob genügend Argumente angegeben wurden. Ist das nicht der Fall, soll <code>help.txt</code> geladen und angezeigt werden. Die dafür notwendige Logik ist in einer Methode namens <code>printHelp</code> zu implementieren. Falls <code>help.txt</code> nicht lesbar ist, soll ein Hinweis auf den Error Stream geschrieben werden. Fange auf jeden Fall die Exception <code>IOException</code> ab.</p>
+<p>Lege dir eine String-Konstante (statisches finales Klassenfeld) namens <code>ALPHABET</code> an, die alle Zeichen enthält, die von der Chiffre unterstützt werden. Hier sollten mindestens alle Groß- und Kleinbuchstaben enthalten sein, sowie alle Dezimalziffern <code>0-9</code>.</p>
+<p>Schreibe nun eine Methode namens <code>isValidText(text)</code>, die prüft, ob ein Text nur aus Zeichen besteht, die in <code>ALPHABET</code> enthalten sind. Leerzeichen sind zu ignorieren. Beispiel: <code>isValidText(&quot;Java is cool&quot;)</code> liefert <code>true</code>, aber <code>isValidText(&quot;C# is godlike&quot;)</code> liefert <code>false</code>, da <code>#</code> nicht in <code>ALPHABET</code> enthalten ist.</p>
+<p>Schreibe eine Methode namens <code>normalizeShift(value, length)</code>, die einen Shift-Wert normalisiert. Beispiel: <code>normalizeShift(-3, 26)</code> liefert 23, da eine Verschiebung um 3 Stellen nach links identisch zu einer Verschiebung um 23 Stellen nach rechts ist, wenn das Alphabet eine Länge von 26 hat. <code>normalizeShift(-29, 26)</code> liefert ebenfalls <code>23</code>. <code>normalizeShift(1, 26)</code> liefert <code>1</code> und <code>normalizeShift(27)</code> auch. Tipp: Verwende den Modulo Operator <code>%</code>.</p>
+<p>Implementiere eine Methode <code>shift(s, n)</code>, die einen String um <code>n</code> Positionen verschiebt bzw. rotiert. Ist <code>n &lt; 0</code> soll nach links verschoben werden, andernfalls nach rechts. Beispiel: <code>shift(&quot;abcd&quot;, -2)</code> liefert <code>cdab</code>. <code>shift(&quot;abcd&quot;, 3)</code> liefert <code>bcda</code>. Verwende die <code>normalizeShift</code> Methode, um den Shift-Wert zu normalisieren.</p>
+<p>Implementiere eine Methode <code>map(s, source, target)</code>, die die Zeichen eines Strings <code>s</code> aus dem Alphabet <code>source</code> in korrespondierende Zeichen eines anderen Alphabets <code>target</code> transformiert. Die Alphabete <code>source</code> und <code>target</code> müssen dieselbe Länge besitzen, andernfalls soll eine <code>IllegalArgumentException</code> geworfen werden. Beispiel:</p>
+<pre class="hljs"><code><div>String source = &quot;abcdefg&quot;;
+String target = &quot;+-*!XYZ&quot;;
+
+map(&quot;cafebabe&quot;, source, target) liefert &quot;*+YX-+-X&quot;
+</div></code></pre>
+<p>Schreibe eine Methode namens <code>encrypt(text, alphabet, shift, reverse)</code>, die einen Text mit der Cäsar-Chiffre verschlüsselt. Beispiel: <code>encrypt(&quot;java is awesome&quot;, ALPHABET, -5, false)</code> liefert <code>ofaf nx fbjxtrj</code>, sofern <code>ALPHABET</code> aus den Zeichen <code>a-z</code> besteht. Der Aufruf <code>encrypt(&quot;java is awesome&quot;, ALPHABET, -5, true)</code> liefert hingegen <code>veje wm eiamqsa</code>. Verwende für die Implementierung die zuvor entwickelten Methoden <code>map</code> und <code>shift</code>.</p>
+<p>Schreibe analog zu <code>encrypt</code> eine Methode namens <code>decrypt(text, alphabet, shift, reverse)</code>, die den <code>text</code> entschlüsselt. Auch hier soll für die Implementierung <code>map</code> und <code>shift</code> verwendet werden.</p>
+<p>Schreibe das Hauptprogramm <code>main</code> unter Verwendung der bisher entwickelten Methoden.</p>
+<h2 id="permutationen-ohne-wiederholung">Permutationen ohne Wiederholung</h2>
+<p>Eine Permutation ohne Wiederholung ist eine Anordnung von <code>n</code> unterschiedlichen Elementen. Beispiel: <code>4, 1, 3, 2</code> und <code>3, 4, 2, 1</code> sind Permutationen der Menge <code>{ 1, 2, 3, 4 }</code>.  Jede Änderung der Reihenfolge ergibt eine neue Permutation.</p>
+<p>Wenn eine Menge aus <code>n</code> Elementen besteht, sind insgesamt <code>n! = 1 * 2 * ... * (n-1) * n</code> Permutationen möglich.</p>
+<p>Schreibe ein Programm, dass alle Permutationen der Zahlen <code>1, 2, ..., n</code> ermittelt. <code>n</code> ist von der Kommandozeile einzulesen.</p>
+<p>Implementiere das Programm in zwei Varianten:</p>
+<ul>
+<li>Die erste Variante soll einen iterativen Algorithmus verwenden.</li>
+<li>Die zweite Variante soll einen rekursiven Algorithmus verwenden.</li>
+</ul>
 
 </body>
 </html>

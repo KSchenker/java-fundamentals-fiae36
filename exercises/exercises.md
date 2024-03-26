@@ -260,5 +260,180 @@ Tipp: Verwende `Integer.parseInt` zum Parsen. Die Uhrzeiten lassen sich zum Beis
 
 # Teil C
 
+## Fakultät berechnen
+
+Es ist ein Programm zu schreiben, dass die Fakultät einer positiven Zahl `n >= 0` berechnet. Die Fakultät einer Zahl `n` wird `n!` geschrieben und bedeutet `1 * 2 * ... * (n-1) * n`. Per Definition ist `0! = 1`.
+
+Aufruf: `app n`. Beispiel: `app 4` gibt 24 aus.
+
+Implementiere das Programm in zwei Varianten:
+
+- Die erste Variante verwendet einen iterativen Algorithmus.
+- Die zweite Variante verwendet einen rekursiven Algorithmus.
+
+## Fibonacci-Folge berechnen
+
+Die Fibonacci-Folge `fib` ist eine rasant wachsende Zahlenfolge. Es gilt: `fib(0) = 0`, `fib(1) = 1` und `fib(2) = 1`. Für `n >= 3` gilt `fib(n) = fib(n-1) + fib(n-2)`.
+
+Es ist ein Programm zu schreiben, dass die Zahlen `fib(0)`, `fib(1)` bis `fib(n)` auf der Kommandozeile ausgibt.
+
+Aufruf: `Fibonacci n`. Beispiel: `Fibonacci 6` gibt `0, 1, 1, 2, 3, 5, 8` aus.
+
+Implementiere das Programm in zwei Varianten:
+
+- Die erste Variante soll einen iterativen Algorithmus verwenden.
+- Die zweite Variante soll einen rekursiven Algorithmus benutzen.
+
+## Arrays konkatenieren (aneinanderhängen)
+
+Schreibe ein Programm, das einen zusammengesetzten Array aus zwei vorgegebenen Arrays erzeugt und dann ausgibt.
+
+Aufruf: `app array-b / array-c`. Beispiel: `app 1 2 3 / u v w x` erzeugt intern die beiden Arrays `["1","2","3"]` und `["u","v","w","x"]`. Das Programm fügt dann beide Arrays zu einem neuen Array mit den Elementen `["1","2","3","u","v","w","x"]` zusammen. Am Schluss erfolgt die Ausgabe.
+
+Tipp: Erstelle dir ein neues Array mit passender Länge und kopiere die Elemente beider Arrays mit einer Schleife.
+
+## Arrays in Arrays einfügen
+
+Schreibe ein Programm, das einen Array `a` in einen Array `b` an Position `index` "einfügt". Da Arrays eine feste Länge besitzten, ist ein neuer Array zu erstellen, der alle Elemente von `b` inklusive aller Elemente von `a` enthält.
+
+Aufruf: `app array-a / array-b / index`. Beispiel: `app 1 2 3 / a b c d / 2` erzeugt intern den Array `a b 1 2 3 c d` und gibt ihn anschließend aus. Beispiel 2: `app 1 2 3 / a b c / 0` gibt `1 2 3 a b c` aus und `app 1 2 3 / a b c / 3` gibt `a b c 1 2 3` aus.
+
+Tipp: Zum Einfügen sind herkömmliche Schleifen ausreichend. Du benötigst keine besonderen Array Funktionen.
+
+## Minimum, Maximum, Durchschnitt und Median ermitteln
+
+Ein Programm soll aus einer Zahlenreihe das Minimum, das Maximum, den Durchschnitt sowie den Median ermitteln. Sofern die Zahlenreihe ungeräde Länge hat, ist der Median als Durchschnitt der beiden mittlersten Elemente der sortierten Zahlenreihe zu berechnen.
+
+Aufruf: `app number...`. Beispiel: `app 2 5 1 2 8 9 9 9` gibt aus: `Min: 1 Max: 9 Avg: 5.625 Med: 6.5`.  Der Median berechnet sich in diesem Fall aus dem arithmetischen Mittel der Zahlen 5 und 8, da diese in der sortierten Reihenfolge die beiden mittleren Elemente sind. Beispiel 2: `app 4 4 2` gibt aus: `Min: 2 Max: 4 Avg: 3.333333 Med: 4`. In diesem Fall ist der Median das mittlere Element der sortierten Zahlenfolge.
+
+## Unikate in einem Array finden
+
+Schreibe ein Programm, dass die Unikate seiner Kommandozeilenargumente ermittelt. Die Unikate sind aufsteigend sortiert auszugeben.
+
+Aufruf: `app arguments...`. Beispiel: `app 2 1 1 3 1 5 9 a B` gibt `1 2 3 5 9 B a` aus. Strings werden lexikographisch geordnet. Da die Code-Points der Dezimalziffern kleiner als die Code-Points der Buchstaben sind, erscheinen diese zuerst. Die Code-Points der Großbuchstaben sind wiederum kleiner als die der Kleinbuchstaben.
+
+Das Programm ist in zwei Varianten zu implementieren:
+
+- In der ersten Variante sollen die Kommandozeilenargumente aufsteigend sortiert werden. Die Suche nach Unikaten verwendet die sortierten Argumente.
+- In der zweiten Variante sollen die Kommandozeilenargumente unberührt bleiben. Die Suche nach Unikaten verwendet die unsortierten Argumente.
+
+Tipps:
+
+- Verwende die Klasse `java.util.Arrays` zum Sortieren (`sort`) und Kürzen (`copyOf` und `copyOfRange`) von Arrays.
+- Arrays haben eine feste Länge und können weder wachsen noch schrumpfen. Lege dir für die zu findenden Unikate ein Array an, dass theoretisch alle Elemente aufnehmen kann. Kürze am Ende der Suche, falls notwendig.
+
+## Wiederholungen eines Zeichens in einer Zeichenkette finden
+
+Es ist ein Programm zu schreiben, dass in einer Zeichenkette `s` nach `n` aufeinanderfolgenden Zeichen `c` sucht. Das Programm beginnt die Suche von links und gibt den Index der ersten gefundenen Sequenz aus. Sofern das Programm keine Sequenz findet, informiert es den Nutzer darüber.
+
+Aufruf: `app s c n`. Beispiel: `app abbcaaadee a 2` gibt `4` aus, da hier die erste Sequenz von `a` mit mindestens 2 Wiederholungen erscheint.
+
+Vorgabe zur Implementierung:
+
+- Verzichte auf die Verwendung von `substring` und nutze stattdessen zwei ineinander geschachtelte Schleifen.
+
+## Texte mit der Cäsar-Chiffre ver- und entschlüsseln
+
+### Funktionsweise der Chiffre
+
+Die Cäsar-Chiffre ist ein sehr einfaches, symmetrisches Verschlüsselungsverfahren. Symmetrisch bedeutet, dass für die Ver- und Entschlüsselung derselbe Schlüssel genutzt wird. Die Cäsar-Chiffre verwendet zum Chiffrieren zwei Alphabete: das Klartextalphabet (plain text alphabet) und das Geheimtextalphabet (cipher text alphabet). Das Geheimalphabet wird gebildet, indem das Klartextalphabet um `shift` Positionen nach links bzw. rechts geschoben bzw. rotiert wird. Beispiel:
+
+```
+Plain-Text Alphabet  : a b c d e f g
+
+Cipher-Text Alphabet : d e f g a b c  Shift: -3 (links)
+Cipher-Text Alphabet : c b a g f e d  Shift: -3 (links) und reverse
+Cipher-Text Alphabet : e f g a b c d  Shift: +3 (rechts)
+Cipher-Text Alphabet : d c b a g f e  Shift: +3 (rechts) und reverse
+
+Cipher-Text Alphabet : a b c d e f g  Shift: +7 (rechts)
+Cipher-Text Alphabet : a b c d e f g  Shift: +0 (rechts)
+Cipher-Text Alphabet : g a b c d e f  Shift: +8 (rechts)
+Cipher-Text Alphabet : g a b c d e f  Shift: +1 (rechts)
+```
+
+Oben sind ein paar Verschiebungen des Klartextalphabets zu sehen. Ist der Shift negativ, wird das Klartextalphabet nach links verschoben bzw. rotiert. Ist der Shift hingegen positiv, wird entsprechend nach rechts verschoben bzw. rotiert. Bei der Cäsar-Chiffre kann das Geheimalphabet anschließend noch umgekehrt werden, sofern das erwünscht ist (reverse).
+
+Das obige Klartextalphabet besteht aus 7 Buchstaben. Würde man um 7 Positionen nach links oder rechts verschieben, erhielte man wieder das Klartextalphabet. Eine Verschiebung um +8 ist identisch zu einer Verschiebung um +1. Analog ist eine Verschiebung um -8 Positionen identisch zu einer Verschiebung um -1.
+
+Die Cäsar-Chiffre verschlüsselt einen Klartext, indem sie jedes Zeichen des Klartextes durch das korrespondierende Zeichen des Geheimalphabets ersetzt. Beispiel:
+
+```
+Plain-Text Alphabet  : a b c d e f g h i j k l m n o p q r s t u v w x y z
+Cipher-Text Alphabet : x y z a b c d e f g h i j k l m n o p q r s t u v w
+
+Plain-Text  : java ist toll
+Cipher-Text : gxsx fpq qlii
+```
+
+Im obigen Beispiel wird das Klartextzeichen `j` durch das Geheimtextzeichen `g` ersetzt. Das Zeichen `a` durch `x` und `v` durch `s`. Hier erkennt man schon eine deutliche Schwachstelle des Verfahrens: gleiche Klartextzeichen werden immer auf gleiche Geheimtextzeichen abgebildet.
+
+Die Entschlüsselung funktioniert genauso, nur dass man die Zeichen des Geheimtextes auf die korrespondierenden Klartextzeichen abbildet.
+
+Für eine erfolgreiche Ver- und Entschlüsselung muss derselbe Schlüssel verwendet werden. Bei der Cäsar-Chiffre ist der Schlüssel der normalisierte Shift des Klartextalphabets. Mit normalisiert ist gemeint, dass der Shift-Wert auf den Bereich `[0, alphabet.length - 1]` abgebildet wird. Beispiel: Hat das Alphabet eine Länge von 26, dann wird der Shift-Wert `-1` auf den Wert `25` abgebildet, denn eine Verschiebung um eine Stelle nach links entspricht einer Verschiebung um 25 Stellen nach rechts. Analog würde der Wert `27` auf den Wert `1` abgebildet, denn eine Verschiebung um 27 Stellen nach rechts, entspricht effektiv einer Verschiebung um eine Stelle nach rechts.
+
+### Aufgabenstellung
+
+Schreibe ein Programm, das Texte mit der Cäsar-Chiffre ver- und entschlüsselt. Der Anwender muss dazu das Kommando (encrypt, decrypt), den Text sowie den Schlüssel (Shift-Wert) angeben. Zusätzlich soll die Angabe des Arguments `--reverse` möglich sein. Ist `--reverse` angegeben, muss das gebildete Geheimtextalphabet vor der Ver- bzw. Entschlüsselung umgekehrt (reverse) werden.
+
+Aufruf: `app <command> <text> <shift> [--reverse]`.
+
+Beispielaufrufe: Hier gilt die Annahme, dass das Klartextalphabet aus den Buchstaben `a-z` besteht.
+- `app encrypt "java is awesome" 3` liefert  `gxsx fp xtbpljb`.
+- `app encrypt "java is awesome" -5` liefert `ofaf nx fbjxtrj`.
+- `app encrypt "java is awesome" -5 --reverse` liefert `veje wm eiamqsa`.
+- `app decrypt "ofaf nx fbjxtrj" -5` liefert `java is awesome`.
+
+Wenn zu wenig Argumente angegeben werden, ist folgender Text auszugeben:
+
+```
+Usage: CaesarCipher <command> <text> <shift> [--reverse]
+
+Options:
+  --reverse    Reverses the cipher alphabet.
+
+Commands:
+  encrypt      Encrypts the plain text with the given shift.
+  decrypt      Decrypts the cipher text with the given shift.
+```
+
+Speichere den obigen Text händisch in einer Datei namens `help.txt` ab. Diese Datei ist in einem Unterordner namens `docs` abzulegen. Bei Programmbegin ist zu prüfen, ob genügend Argumente angegeben wurden. Ist das nicht der Fall, soll `help.txt` geladen und angezeigt werden. Die dafür notwendige Logik ist in einer Methode namens `printHelp` zu implementieren. Falls `help.txt` nicht lesbar ist, soll ein Hinweis auf den Error Stream geschrieben werden. Fange auf jeden Fall die Exception `IOException` ab.
+
+Lege dir eine String-Konstante (statisches finales Klassenfeld) namens `ALPHABET` an, die alle Zeichen enthält, die von der Chiffre unterstützt werden. Hier sollten mindestens alle Groß- und Kleinbuchstaben enthalten sein, sowie alle Dezimalziffern `0-9`.
+
+Schreibe nun eine Methode namens `isValidText(text)`, die prüft, ob ein Text nur aus Zeichen besteht, die in `ALPHABET` enthalten sind. Leerzeichen sind zu ignorieren. Beispiel: `isValidText("Java is cool")` liefert `true`, aber `isValidText("C# is godlike")` liefert `false`, da `#` nicht in `ALPHABET` enthalten ist.
+
+Schreibe eine Methode namens `normalizeShift(value, length)`, die einen Shift-Wert normalisiert. Beispiel: `normalizeShift(-3, 26)` liefert 23, da eine Verschiebung um 3 Stellen nach links identisch zu einer Verschiebung um 23 Stellen nach rechts ist, wenn das Alphabet eine Länge von 26 hat. `normalizeShift(-29, 26)` liefert ebenfalls `23`. `normalizeShift(1, 26)` liefert `1` und `normalizeShift(27)` auch. Tipp: Verwende den Modulo Operator `%`.
+
+Implementiere eine Methode `shift(s, n)`, die einen String um `n` Positionen verschiebt bzw. rotiert. Ist `n < 0` soll nach links verschoben werden, andernfalls nach rechts. Beispiel: `shift("abcd", -2)` liefert `cdab`. `shift("abcd", 3)` liefert `bcda`. Verwende die `normalizeShift` Methode, um den Shift-Wert zu normalisieren.
+
+Implementiere eine Methode `map(s, source, target)`, die die Zeichen eines Strings `s` aus dem Alphabet `source` in korrespondierende Zeichen eines anderen Alphabets `target` transformiert. Die Alphabete `source` und `target` müssen dieselbe Länge besitzen, andernfalls soll eine `IllegalArgumentException` geworfen werden. Beispiel:
+
+```
+String source = "abcdefg";
+String target = "+-*!XYZ";
+
+map("cafebabe", source, target) liefert "*+YX-+-X"
+```
+
+Schreibe eine Methode namens `encrypt(text, alphabet, shift, reverse)`, die einen Text mit der Cäsar-Chiffre verschlüsselt. Beispiel: `encrypt("java is awesome", ALPHABET, -5, false)` liefert `ofaf nx fbjxtrj`, sofern `ALPHABET` aus den Zeichen `a-z` besteht. Der Aufruf `encrypt("java is awesome", ALPHABET, -5, true)` liefert hingegen `veje wm eiamqsa`. Verwende für die Implementierung die zuvor entwickelten Methoden `map` und `shift`.
+
+Schreibe analog zu `encrypt` eine Methode namens `decrypt(text, alphabet, shift, reverse)`, die den `text` entschlüsselt. Auch hier soll für die Implementierung `map` und `shift` verwendet werden.
+
+Schreibe das Hauptprogramm `main` unter Verwendung der bisher entwickelten Methoden.
+
+## Permutationen ohne Wiederholung
+
+Eine Permutation ohne Wiederholung ist eine Anordnung von `n` unterschiedlichen Elementen. Beispiel: `4, 1, 3, 2` und `3, 4, 2, 1` sind Permutationen der Menge `{ 1, 2, 3, 4 }`.  Jede Änderung der Reihenfolge ergibt eine neue Permutation.
+
+Wenn eine Menge aus `n` Elementen besteht, sind insgesamt `n! = 1 * 2 * ... * (n-1) * n` Permutationen möglich.
+
+Schreibe ein Programm, dass alle Permutationen der Zahlen `1, 2, ..., n` ermittelt. `n` ist von der Kommandozeile einzulesen.
+
+Implementiere das Programm in zwei Varianten:
+
+- Die erste Variante soll einen iterativen Algorithmus verwenden.
+- Die zweite Variante soll einen rekursiven Algorithmus verwenden.
+
 
 
