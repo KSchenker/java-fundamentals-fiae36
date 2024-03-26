@@ -7,9 +7,9 @@ public class Array2D {
 
         // Unser Elementdatentyp ist int[].
         int[][] data = {
-            new int[] { 5, 14, 11, 10 },
-            new int[] { 2, 22, 19, 15 },
-            new int[] { 0, 3, 5 },
+            { 5, 14, 11, 10 }, // data[0]
+            { 2, 22, 19, 15 }, // data[1]
+            { 0, 3, 5 },       // data[2]
         };
 
         // Datentyp von data ist int[3][].
@@ -39,6 +39,11 @@ public class Array2D {
             // Erzeuge ein neues Array mit totalCols
             // Elementen. Alle Elemente haben den Wert 0.
             data[i] = new int[totalCols];
+            // Fülle die Zellen des neuen Arrays mit
+            // Zufallszahlen im Bereich von 0 - 19.
+            for (int j = 0; j < data[i].length; j++) {
+                data[i][j] = generator.nextInt(20 + 1);
+            }
         }
         return data;
     }

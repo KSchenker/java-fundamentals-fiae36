@@ -719,6 +719,32 @@ void modify(ref int[] numbers) {
 }
 ```
 
+# Primitive Werte vergleichen und Referenzen vergleichen
+
+Wenn wir zwei Variablen mit dem `==` Operator vergleichen, prüfen wir, ob sich in beiden Variablen dasselbe Bitmuster befindet. Das hat folgende Sequenzen:
+
+Wenn die zu vergleichenden Variablen primitiven Datentyp haben, so wird effektiv geprüft, ob beide Variablen gleiche Werte besitzen. Beispiel: Wenn `int a = 3` und `int b = 3` dann ist `a == b` wahr, da ja in beiden der Wert 3 steht.
+
+Wenn die zu vergleichenden Variablen einen Referenzdatentyp haben, so wird effektiv geprüft, ob beide Variablen auf dasselbe Objekt im Speicher verweisen. Beispiel:
+
+```
+String a = new String("abc");
+String b = new String("abc");
+
+a == b liefert false, da a und b auf unterschiedliche String-Objekte verweisen.
+a.equals(b) liefert true, da a und b auf String-Objekte verweisen, die den gleichen Inhalt besitzen.
+
+String a = "max";
+String b = a;
+
+a == b liefert true, da nun a und b auf dasselbe String-Objekt verweisen.
+a.equals(b) liefert true, da a und b auf String-Objekte verweisen, die denselben Inhalt besitzen.
+```
+
+![](../diagrams/reference-variables-vs-primitive-variables.svg)
+
+Hinweis: Wenn `a == b` gilt, dann sollte auch `a.equals(b)` den Wert `true` liefern. Umgekehrt kann jedoch aus `a.equals(b)` nicht geschlussfolgert werden, dass auch `a == b` gilt. Nur weil zwei Objekte _gleich_ sind, heißt das nicht, dass sie auch _identisch_ sind.
+
 # Arrays kopieren
 
 Kopieren wir einen Array, dessen Elemente primitiv sind (z.B. int, double), so ist die Kopie völlig isoliert vom Original.
@@ -729,11 +755,13 @@ Kopieren wir jedoch einen Array, dessen Elemente Referenzen sind (z.B. String, S
 
 Würde man eine vollständig isolierte Kopie erzeugen wollen, müsste man auch die von den Zellen referenzierten Datenobjekte kopieren. Das ist aber weder bei `clone` noch bei `Arrays.copyOf` der Fall.
 
-# Zweidimensionale Arrays
+# Zweidimensionale und dreidimensionale Arrays
 
 Java unterstützt nur eindimensionale Arrays. Möchte man mehrere Dimensionen abbilden, kann man Arrays ineinander schachteln. Ein zweidimensionaler Array ist letztlich nur ein eindimensionaler Array, dessen Elemente ebenfalls Arrays sind.
 
 ![](../diagrams/2d-array-example.svg)
+
+![](../diagrams/2d-array-example-memory-layout.svg)
 
 ```java
 int[][] table = {
@@ -747,3 +775,5 @@ int[][] table = {
 // Datentyp von table[2] ist int[3].
 // Datentyp von table[2][1] ist int.
 ```
+
+![](../diagrams/3d-array-example-memory-layout.svg)

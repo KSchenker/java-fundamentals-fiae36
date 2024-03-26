@@ -1043,14 +1043,33 @@ modify(primes);
     numbers = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[] { <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>}
 }
 </div></code></pre>
+<h1 id="primitive-werte-vergleichen-und-referenzen-vergleichen">Primitive Werte vergleichen und Referenzen vergleichen</h1>
+<p>Wenn wir zwei Variablen mit dem <code>==</code> Operator vergleichen, prüfen wir, ob sich in beiden Variablen dasselbe Bitmuster befindet. Das hat folgende Sequenzen:</p>
+<p>Wenn die zu vergleichenden Variablen primitiven Datentyp haben, so wird effektiv geprüft, ob beide Variablen gleiche Werte besitzen. Beispiel: Wenn <code>int a = 3</code> und <code>int b = 3</code> dann ist <code>a == b</code> wahr, da ja in beiden der Wert 3 steht.</p>
+<p>Wenn die zu vergleichenden Variablen einen Referenzdatentyp haben, so wird effektiv geprüft, ob beide Variablen auf dasselbe Objekt im Speicher verweisen. Beispiel:</p>
+<pre class="hljs"><code><div>String a = new String(&quot;abc&quot;);
+String b = new String(&quot;abc&quot;);
+
+a == b liefert false, da a und b auf unterschiedliche String-Objekte verweisen.
+a.equals(b) liefert true, da a und b auf String-Objekte verweisen, die den gleichen Inhalt besitzen.
+
+String a = &quot;max&quot;;
+String b = a;
+
+a == b liefert true, da nun a und b auf dasselbe String-Objekt verweisen.
+a.equals(b) liefert true, da a und b auf String-Objekte verweisen, die denselben Inhalt besitzen.
+</div></code></pre>
+<p><img src="../diagrams/reference-variables-vs-primitive-variables.svg" alt=""></p>
+<p>Hinweis: Wenn <code>a == b</code> gilt, dann sollte auch <code>a.equals(b)</code> den Wert <code>true</code> liefern. Umgekehrt kann jedoch aus <code>a.equals(b)</code> nicht geschlussfolgert werden, dass auch <code>a == b</code> gilt. Nur weil zwei Objekte <em>gleich</em> sind, heißt das nicht, dass sie auch <em>identisch</em> sind.</p>
 <h1 id="arrays-kopieren">Arrays kopieren</h1>
 <p>Kopieren wir einen Array, dessen Elemente primitiv sind (z.B. int, double), so ist die Kopie völlig isoliert vom Original.</p>
 <p>Kopieren wir jedoch einen Array, dessen Elemente Referenzen sind (z.B. String, StringBuilder), so ist die Kopie nur teilweise vom Original isoliert. Die &quot;Zellen&quot; des Originals und der Kopie verweisen nämlich auf diesselben Datenobjekte im Speicher. Einerseits ist dadurch das Kopieren schnell erledigt, andererseits birgt das aber auch Gefahren, wenn man die referenzierten Objekte modifiziert.</p>
 <p><img src="../diagrams/shallow-copy-of-array.svg" alt=""></p>
 <p>Würde man eine vollständig isolierte Kopie erzeugen wollen, müsste man auch die von den Zellen referenzierten Datenobjekte kopieren. Das ist aber weder bei <code>clone</code> noch bei <code>Arrays.copyOf</code> der Fall.</p>
-<h1 id="zweidimensionale-arrays">Zweidimensionale Arrays</h1>
+<h1 id="zweidimensionale-und-dreidimensionale-arrays">Zweidimensionale und dreidimensionale Arrays</h1>
 <p>Java unterstützt nur eindimensionale Arrays. Möchte man mehrere Dimensionen abbilden, kann man Arrays ineinander schachteln. Ein zweidimensionaler Array ist letztlich nur ein eindimensionaler Array, dessen Elemente ebenfalls Arrays sind.</p>
 <p><img src="../diagrams/2d-array-example.svg" alt=""></p>
+<p><img src="../diagrams/2d-array-example-memory-layout.svg" alt=""></p>
 <pre class="hljs"><code><div><span class="hljs-keyword">int</span>[][] table = {
     { <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> },
     { <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span> },
@@ -1062,6 +1081,7 @@ modify(primes);
 <span class="hljs-comment">// Datentyp von table[2] ist int[3].</span>
 <span class="hljs-comment">// Datentyp von table[2][1] ist int.</span>
 </div></code></pre>
+<p><img src="../diagrams/3d-array-example-memory-layout.svg" alt=""></p>
 
 </body>
 </html>
