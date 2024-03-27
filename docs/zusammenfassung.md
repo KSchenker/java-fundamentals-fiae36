@@ -793,6 +793,9 @@ Um ein JAR zu erzeugen, verwendet man das `jar` Tool des JDKs. Beispiel:
 # Wenn das JAR mittels Java Laucher gestartet wird, soll die main
 # Methode der Klasse de.iad.App ausgeführt werden.
 jar --create --file my-app.jar --main-class de.iad.App .
+
+# Allgemeiner Aufruf
+jar --create --file <filename-of-jar> --main-class <full-qualified-name-of-main-class>
 ```
 
 Um ein JAR auszuführen, verwende den Java Launcher wie folgt:

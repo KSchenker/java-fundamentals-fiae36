@@ -1092,6 +1092,9 @@ a.equals(b) liefert true, da a und b auf String-Objekte verweisen, die denselben
 <span class="hljs-comment"># Wenn das JAR mittels Java Laucher gestartet wird, soll die main</span>
 <span class="hljs-comment"># Methode der Klasse de.iad.App ausgeführt werden.</span>
 jar -<span class="hljs-literal">-create</span> -<span class="hljs-operator">-file</span> my<span class="hljs-literal">-app</span>.jar -<span class="hljs-literal">-main</span><span class="hljs-literal">-class</span> de.iad.App .
+
+<span class="hljs-comment"># Allgemeiner Aufruf</span>
+jar -<span class="hljs-literal">-create</span> -<span class="hljs-operator">-file</span> &lt;filename<span class="hljs-literal">-of</span><span class="hljs-literal">-jar</span>&gt; -<span class="hljs-literal">-main</span><span class="hljs-literal">-class</span> &lt;full<span class="hljs-literal">-qualified</span><span class="hljs-literal">-name</span><span class="hljs-literal">-of</span><span class="hljs-literal">-main</span><span class="hljs-literal">-class</span>&gt;
 </div></code></pre>
 <p>Um ein JAR auszuführen, verwende den Java Launcher wie folgt:</p>
 <pre class="hljs"><code><div>java <span class="hljs-literal">-jar</span> C:\dev\my<span class="hljs-literal">-app</span>.jar argument1 argument2 ... 
