@@ -777,3 +777,65 @@ int[][] table = {
 ```
 
 ![](../diagrams/3d-array-example-memory-layout.svg)
+
+
+# Eine Applikation in ein JAR verpacken und ausführen
+
+Java Applikationen werden in der Regel in Java Archives (JAR) an den Kunden ausgeliefert. Das sind herkömmliche Zip Dateien, die neben den Kompilaten noch zusätzliche Metainformationen abspeichern. In den Metainformationen ist z.B. hinterlegt, welche Klasse beim Ausführen des JARs zu starten ist.
+
+Um ein JAR zu erzeugen, verwendet man das `jar` Tool des JDKs. Beispiel:
+
+```powershell
+# Erstelle ein JAR namens my-app.jar
+# In dieses JAR sollen alle Dateien hinzugefügt werden,
+# die sich im aktuellen Arbeitsverzeichnis befinden.
+# Hinweis: Der Pfad für das aktuelle Arbeitsverzeichnis ist . (Punkt)
+# Wenn das JAR mittels Java Laucher gestartet wird, soll die main
+# Methode der Klasse de.iad.App ausgeführt werden.
+jar --create --file my-app.jar --main-class de.iad.App .
+```
+
+Um ein JAR auszuführen, verwende den Java Launcher wie folgt:
+
+```powershell
+java -jar C:\dev\my-app.jar argument1 argument2 ... 
+```
+
+# Eine Applikation in Packages aufteilen und den CLASSPATH anpassen
+
+Größere Programme werden in Komponenten zerlegt, die in unterschiedlichen Java Packages abgelegt werden, um sie austauschbar und wiederverwendbar zu machen.
+
+Ein Java Package ist eine Verzeichnisstruktur, in der Quelltext-Dateien und Class-Dateien hinterlegt sind. Beispiel:
+
+```powershell
+MainApp.class
+└───de
+    └───iad
+        └───utils
+                ArrayUtils.class
+```
+
+Im obigen Beispiel wird das Package `de.iad.utils` als Verzeichnisstruktur abgelegt. Das Package enthält eine kompilierte Klasse namens `ArrayUtils.class`. Um die Klasse zu verwenden, würde man in seinem Programm (z.B. `MainApp`) folgende `import` Anweisung verwenden:
+
+```java
+import de.iad.utils.ArrayUtils;
+```
+
+Damit der Java Compiler und der Java Launcher diese Verzeichnisstrukturen bzw. Packages finden können, muss ggf. der sogenannte _Classpath_ konfiguriert werden. 
+
+Der Classpath ist eine Liste von Verzeichnissen und JAR-Dateien, getrennt durch Semikolons `;` bzw. `:`. Compiler und Runtime durchsuchen die Einträge des Classpaths in der vorgegebenen Reihenfolge. Sobald die angeforderte Klasse gefunden wurde, wird die Suche im Classpath beendet. **Die Reihenfolge im Classpath ist also wichtig.** Beispiel:
+
+```powershell
+# Packages sollen in den Verzeichnissen C:\vendor\my-packages
+# gesucht werden. Zusätzlich soll in JAR Dateien nachgeschaut
+# werden, die sich im Verzeichnis C:\libs befinden.
+# Außerdem soll im aktuellen Arbeitsverzeichnis (.) nachgesehen
+# werden.
+# Die Kompilate sind im Unterverzeichnis output abzulegen.
+javac -d output --class-path ".;C:\libs\*;C:\vendor\my-packages"
+
+# Auch der Java Launcher benötigt den korrekten Classpath.
+# Hier fügen wir noch das Output-Verzeichnis hinzu, da
+# wir dort unsere Kompilate abgelegt haben.
+java --class-path "output;.;C:\libs\*;C:\vendor\my-packages"
+```

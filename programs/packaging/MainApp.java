@@ -10,7 +10,7 @@ public class MainApp {
     System.out.println(ArrayUtils.get(primes, -2));
     System.out.println(ArrayUtils.get(primes, 1));
     
-    ArrayUtils.reverse(primes)
+    ArrayUtils.reverse(primes);
     System.out.println(Arrays.toString(primes));
 
   }

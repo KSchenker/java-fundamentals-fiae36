@@ -1082,6 +1082,47 @@ a.equals(b) liefert true, da a und b auf String-Objekte verweisen, die denselben
 <span class="hljs-comment">// Datentyp von table[2][1] ist int.</span>
 </div></code></pre>
 <p><img src="../diagrams/3d-array-example-memory-layout.svg" alt=""></p>
+<h1 id="eine-applikation-in-ein-jar-verpacken-und-ausf%C3%BChren">Eine Applikation in ein JAR verpacken und ausführen</h1>
+<p>Java Applikationen werden in der Regel in Java Archives (JAR) an den Kunden ausgeliefert. Das sind herkömmliche Zip Dateien, die neben den Kompilaten noch zusätzliche Metainformationen abspeichern. In den Metainformationen ist z.B. hinterlegt, welche Klasse beim Ausführen des JARs zu starten ist.</p>
+<p>Um ein JAR zu erzeugen, verwendet man das <code>jar</code> Tool des JDKs. Beispiel:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Erstelle ein JAR namens my-app.jar</span>
+<span class="hljs-comment"># In dieses JAR sollen alle Dateien hinzugefügt werden,</span>
+<span class="hljs-comment"># die sich im aktuellen Arbeitsverzeichnis befinden.</span>
+<span class="hljs-comment"># Hinweis: Der Pfad für das aktuelle Arbeitsverzeichnis ist . (Punkt)</span>
+<span class="hljs-comment"># Wenn das JAR mittels Java Laucher gestartet wird, soll die main</span>
+<span class="hljs-comment"># Methode der Klasse de.iad.App ausgeführt werden.</span>
+jar -<span class="hljs-literal">-create</span> -<span class="hljs-operator">-file</span> my<span class="hljs-literal">-app</span>.jar -<span class="hljs-literal">-main</span><span class="hljs-literal">-class</span> de.iad.App .
+</div></code></pre>
+<p>Um ein JAR auszuführen, verwende den Java Launcher wie folgt:</p>
+<pre class="hljs"><code><div>java <span class="hljs-literal">-jar</span> C:\dev\my<span class="hljs-literal">-app</span>.jar argument1 argument2 ... 
+</div></code></pre>
+<h1 id="eine-applikation-in-packages-aufteilen-und-den-classpath-anpassen">Eine Applikation in Packages aufteilen und den CLASSPATH anpassen</h1>
+<p>Größere Programme werden in Komponenten zerlegt, die in unterschiedlichen Java Packages abgelegt werden, um sie austauschbar und wiederverwendbar zu machen.</p>
+<p>Ein Java Package ist eine Verzeichnisstruktur, in der Quelltext-Dateien und Class-Dateien hinterlegt sind. Beispiel:</p>
+<pre class="hljs"><code><div>MainApp<span class="hljs-class">.<span class="hljs-keyword">class</span>
+└───<span class="hljs-title">de</span>
+    └───<span class="hljs-title">iad</span>
+        └───<span class="hljs-title">utils</span>
+                <span class="hljs-title">ArrayUtils</span>.<span class="hljs-title">class</span>
+</span></div></code></pre>
+<p>Im obigen Beispiel wird das Package <code>de.iad.utils</code> als Verzeichnisstruktur abgelegt. Das Package enthält eine kompilierte Klasse namens <code>ArrayUtils.class</code>. Um die Klasse zu verwenden, würde man in seinem Programm (z.B. <code>MainApp</code>) folgende <code>import</code> Anweisung verwenden:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">import</span> de.iad.utils.ArrayUtils;
+</div></code></pre>
+<p>Damit der Java Compiler und der Java Launcher diese Verzeichnisstrukturen bzw. Packages finden können, muss ggf. der sogenannte <em>Classpath</em> konfiguriert werden.</p>
+<p>Der Classpath ist eine Liste von Verzeichnissen und JAR-Dateien, getrennt durch Semikolons <code>;</code> bzw. <code>:</code>. Compiler und Runtime durchsuchen die Einträge des Classpaths in der vorgegebenen Reihenfolge. Sobald die angeforderte Klasse gefunden wurde, wird die Suche im Classpath beendet. <strong>Die Reihenfolge im Classpath ist also wichtig.</strong> Beispiel:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Packages sollen in den Verzeichnissen C:\vendor\my-packages</span>
+<span class="hljs-comment"># gesucht werden. Zusätzlich soll in JAR Dateien nachgeschaut</span>
+<span class="hljs-comment"># werden, die sich im Verzeichnis C:\libs befinden.</span>
+<span class="hljs-comment"># Außerdem soll im aktuellen Arbeitsverzeichnis (.) nachgesehen</span>
+<span class="hljs-comment"># werden.</span>
+<span class="hljs-comment"># Die Kompilate sind im Unterverzeichnis output abzulegen.</span>
+javac <span class="hljs-literal">-d</span> output -<span class="hljs-literal">-class</span><span class="hljs-literal">-path</span> <span class="hljs-string">".;C:\libs\*;C:\vendor\my-packages"</span>
+
+<span class="hljs-comment"># Auch der Java Launcher benötigt den korrekten Classpath.</span>
+<span class="hljs-comment"># Hier fügen wir noch das Output-Verzeichnis hinzu, da</span>
+<span class="hljs-comment"># wir dort unsere Kompilate abgelegt haben.</span>
+java -<span class="hljs-literal">-class</span><span class="hljs-literal">-path</span> <span class="hljs-string">"output;.;C:\libs\*;C:\vendor\my-packages"</span>
+</div></code></pre>
 
 </body>
 </html>
